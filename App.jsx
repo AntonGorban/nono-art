@@ -1,13 +1,13 @@
+// General
 import "react-native-gesture-handler";
-import React, { useState } from "react";
+import React from "react";
 import { StyleSheet, Text, View, Button, Alert, StatusBar } from "react-native";
+import { connect, Provider } from "react-redux";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-import AppLoading from "expo-app-loading";
-import * as Font from "expo-font";
-import * as sett from "./src/settings.json";
-import * as localLevelJSON from "./src/assets/level.json";
-import Context from "./src/context";
+import sett from "./src/settings";
+
+// Screens
 import { Main } from "./src/Screen/Main";
 import { Levels } from "./src/Screen/Levels";
 import { Game } from "./src/Screen/Game";
@@ -15,89 +15,59 @@ import { Designer } from "./src/Screen/Designer";
 import { ColorPicker } from "./src/GameGrid/ColorPicker";
 import { LevelJSON } from "./src/GameGrid/LevelJSON";
 import { About } from "./src/Screen/About";
-import storage, { getLevelsFromRepo } from "./src/storage";
 
+// Storage
+import { storage, getLevelsFromRepo } from "./src/storage";
+
+// Для навигатора, используется только здесь
 const Stack = createStackNavigator();
 
-export default function App() {
-  const [levels, setLevels] = useState([]);
-  const updateLevels = (levels) => {
-    storage.setObj("levels", levels);
-    setLevels(levels);
-  };
+class AppContainer extends React.Component {
+  constructor(props) {
+    super(props);
+    console.log(props);
+  }
 
-  storage.getObj("levels").then((data) => {
-    if (data === null) {
-      updateLevels([localLevelJSON]);
-    } else {
-      if (data.length !== levels.length) setLevels(data);
-    }
-    setProgress(data[selectedLevel].progress);
-  });
-
-  const [selectedLevel, setSelectedLevel] = useState(0);
-  const updateSelectedLevel = (selectedLevel) => {
-    storage.setObj("selectedLevel", selectedLevel);
-    setSelectedLevel(selectedLevel);
-  };
-
-  storage.getObj("selectedLevel").then((data) => {
-    if (data === null) {
-      updateSelectedLevel(0);
-    } else {
-      if (data !== selectedLevel) setSelectedLevel(data);
-    }
-  });
-
-  getLevelsFromRepo().then((repoLevels) => {
-    storage.getObj("levels").then((localLevels) => {
-      if (repoLevels.length > localLevels.length) {
-        for (let i = localLevels.length; i < repoLevels.length; i++) {
-          localLevels.push(repoLevels[i]);
-        }
-        updateLevels(localLevels);
+  componentDidMount() {
+    storage.getObj("levels").then((data) => {
+      if (data !== null) {
+        // setLevels(data);
       }
     });
-  });
 
-  const [progress, setProgress] = useState(undefined);
-  const updateProgress = (data) => {
-    setProgress(data);
-    levels[selectedLevel].progress = data;
-    updateLevels(levels);
-  };
+    storage.getObj("selectedLevel").then((data) => {
+      if (data !== null) {
+        // setSelectedLevel(data);
+      }
+    });
 
-  const [colorPickerProps, setColorPickerProps] = useState({});
-  const [levelJSONText, setLevelJSONText] = useState("");
-  /* --- Fonts --- */
-  const [fontsLoaded] = Font.useFonts({
-    "Montserrat-Alternates-light": require("./src/assets/fonts/MontserratAlternates-Light.otf"),
-    "Montserrat-Alternates-regular": require("./src/assets/fonts/MontserratAlternates-Regular.otf"),
-    "Montserrat-Alternates-bold": require("./src/assets/fonts/MontserratAlternates-Bold.otf"),
-    "Fredericka-the-Great": require("./src/assets/fonts/FrederickatheGreat-Regular.otf"),
-  });
-
-  if (!fontsLoaded) {
-    return <AppLoading />;
+    //   getLevelsFromRepo().then((repoLevels) => {
+    //     storage.getObj("levels").then((localLevels) => {
+    //       if (repoLevels.length > localLevels.length) {
+    //         for (let i = localLevels.length; i < repoLevels.length; i++) {
+    //           localLevels.push(repoLevels[i]);
+    //         }
+    //         updateLevels(localLevels);
+    //       }
+    //     });
+    //   });
   }
-  /* --- End Fonts --- */
-  return (
-    <NavigationContainer>
-      <Context.Provider
-        value={{
-          Stack,
-          colorPickerProps,
-          setColorPickerProps,
-          levelJSONText,
-          setLevelJSONText,
-          levels,
-          selectedLevel,
-          updateSelectedLevel,
-          progress,
-          setProgress,
-          updateProgress,
-        }}
-      >
+
+  render() {
+    return (
+      <NavigationContainer>
+        {/* Context.Provider value={{
+            colorPickerProps,
+            setColorPickerProps,
+            levelJSONText,
+            setLevelJSONText,
+            levels,
+            selectedLevel,
+            updateSelectedLevel,
+            progress,
+            setProgress,
+            updateProgress,
+          }} */}
         <Stack.Navigator initialRouteName="Main" headerMode="float">
           <Stack.Screen name="Main" component={Main} options={headerOptions} />
           <Stack.Screen
@@ -129,43 +99,62 @@ export default function App() {
         </Stack.Navigator>
         <StatusBar
           barStyle="light-content"
-          backgroundColor={sett.colors.darkBlack}
+          backgroundColor={sett.color.darkBlack}
           translucent={false}
         />
-      </Context.Provider>
-    </NavigationContainer>
-  );
+      </NavigationContainer>
+    );
+  }
 }
+
+// Погнал Redux и ебля с ним, ну и шрифты
+const mapStateToProps = (state) => ({
+  levels: state.levels,
+});
+
+const mapDispatchToProps = (dispatch) => ({});
+
+const App = connect(mapStateToProps, mapDispatchToProps)(AppContainer);
+
+import store from "./src/redux/store";
+global.store = store;
+
+import * as Font from "expo-font";
+import AppLoading from "expo-app-loading";
+
+export default () => {
+  const [fontsLoaded] = Font.useFonts({
+    "Montserrat-Alternates-light": require("./src/assets/fonts/MontserratAlternates-Light.otf"),
+    "Montserrat-Alternates-regular": require("./src/assets/fonts/MontserratAlternates-Regular.otf"),
+    "Montserrat-Alternates-bold": require("./src/assets/fonts/MontserratAlternates-Bold.otf"),
+    "Fredericka-the-Great": require("./src/assets/fonts/FrederickatheGreat-Regular.otf"),
+  });
+
+  if (!fontsLoaded) {
+    return <AppLoading />;
+  }
+
+  return (
+    <Provider store={store}>
+      <App />
+    </Provider>
+  );
+};
 
 const headerOptions = {
   title: "nonoArt",
   headerStyle: {
-    backgroundColor: sett.colors.darkBlack,
-    borderColor: sett.colors.white,
+    backgroundColor: sett.color.darkBlack,
+    borderColor: sett.color.white,
     borderStyle: "solid",
     borderBottomWidth: 1,
   },
   headerTitleAlign: "center",
-  headerTintColor: sett.colors.white,
+  headerTintColor: sett.color.white,
   headerTitleStyle: {
     fontSize: 30,
     color: "#fefefe",
-    fontFamily: "Fredericka-the-Great",
+    fontFamily: sett.font.fredericka,
     textAlign: "center",
   },
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: sett.colors.black,
-    alignItems: "center",
-    justifyContent: "space-between",
-  },
-  text: {
-    fontSize: 35,
-    textAlign: "center",
-    paddingVertical: 15,
-    color: sett.colors.white,
-  },
-});
