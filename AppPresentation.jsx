@@ -19,32 +19,25 @@ export const AppPresentation = ({}) => {
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Main" headerMode="float">
-        <Stack.Screen name="Main" component={Main} options={headerOptions} />
-        <Stack.Screen
-          name="Levels"
-          component={Levels}
-          options={headerOptions}
-        />
-        <Stack.Screen name="Game" component={Game} options={headerOptions} />
-        <Stack.Screen
-          name="Designer"
-          component={Designer}
-          options={headerOptions}
-        />
-        <Stack.Screen
-          name="ColorPicker"
-          component={ColorPicker}
-          options={headerOptions}
-        />
-        <Stack.Screen name="About" component={About} options={headerOptions} />
-        <Stack.Screen
-          name="LevelJSON"
-          component={LevelJSON}
-          options={headerOptions}
-        />
+        {[
+          { name: "Main", component: Main },
+          { name: "Levels", component: Levels },
+          { name: "Game", component: Game },
+          { name: "Designer", component: Designer },
+          { name: "ColorPicker", component: ColorPicker },
+          { name: "About", component: About },
+          { name: "LevelJSON", component: LevelJSON },
+        ].map((screen) => (
+          <Stack.Screen
+            key={`screen-${screen.name}`}
+            name={screen.name}
+            component={screen.component}
+            options={headerOptions}
+          />
+        ))}
       </Stack.Navigator>
       <StatusBar
-        barStyle="light-content"
+        barStyle="dark-content"
         backgroundColor={sett.color.darkBlack}
         translucent={false}
       />
@@ -64,7 +57,7 @@ const headerOptions = {
   headerTitleAlign: "center",
   headerTintColor: sett.color.white,
   headerTitleStyle: {
-    fontSize: 30,
+    fontSize: 35,
     color: "#fefefe",
     fontFamily: sett.font.fredericka,
     textAlign: "center",
