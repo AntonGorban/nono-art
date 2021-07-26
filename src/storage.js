@@ -7,7 +7,7 @@ export const getLevelsFromRepo = async () => {
   return await response.json();
 };
 
-export default storage = {
+export const storage = {
   getStr: async (key) => {
     try {
       return await AsyncStorage.getItem(key);

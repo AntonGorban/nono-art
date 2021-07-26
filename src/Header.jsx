@@ -7,7 +7,7 @@ export const Header = (props) => {
     <View style={styles.container}>
       <Text style={styles.text}>nonoArt</Text>
       <StatusBar
-        barStyle="light-content"
+        barStyle="dark-content"
         backgroundColor={sett.colors.darkBlack}
         translucent={false}
       />

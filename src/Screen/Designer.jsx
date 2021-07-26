@@ -1,7 +1,6 @@
 import React, { useState, useContext } from "react";
 import { StyleSheet, Text, View, Button, Alert } from "react-native";
 import * as sett from "../settings.json";
-// import * as level from "../assets/level.json";
 import Context from "../context";
 import { GameGrid } from "../GameGrid/GameGrid";
 import { Colors } from "../GameGrid/Colors";
