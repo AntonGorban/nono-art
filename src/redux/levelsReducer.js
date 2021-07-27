@@ -1,4 +1,8 @@
 const SET_LEVELS = "SET-LEVELS";
+const PUSH_NEW_LEVELS = "PUSH-NEW-LEVELS";
+const SET_SELECTED_LEVEL = "SET-SELECTED-LEVEL";
+
+import { storage } from "../storage";
 
 const initialState = {
   levels: [
@@ -19,35 +23,55 @@ const initialState = {
         [null, null, null, 0, 1, 1, 0, null, null, null],
         [null, null, null, null, 0, 0, null, null, null, null],
       ],
+      progress: [
+        [null, null, null, null, null, null, null, null, null, null],
+        [null, null, null, null, null, null, null, null, null, null],
+        [null, null, null, null, null, null, null, null, null, null],
+        [null, null, null, null, null, null, null, null, null, null],
+        [null, null, null, null, null, null, null, null, null, null],
+        [null, null, null, null, null, null, null, null, null, null],
+        [null, null, null, null, null, null, null, null, null, null],
+        [null, null, null, null, null, null, null, null, null, null],
+        [null, null, null, null, null, null, null, null, null, null],
+        [null, null, null, null, null, null, null, null, null, null],
+      ],
     },
   ],
-  selectLevels: 0,
+  selectedLevel: 0,
 };
 
 const levelsReducer = (prevState = initialState, action) => {
-  let state = { ...prevState };
-
   switch (action.type) {
     case SET_LEVELS:
-      let levels = action.levels;
-      state.levels = levels;
-      return state;
+      storage.setObj("levels", action.levels);
+      return { ...prevState, levels: action.levels };
 
-    // const updateLevels = (levels) => {
-    //   storage.setObj("levels", levels);
-    //   setLevels(levels);
-    // };
+    case PUSH_NEW_LEVELS:
+      storage.setObj("levels", [...prevState.levels, ...action.levels]);
+      return { ...prevState, levels: [...prevState.levels, ...action.levels] };
 
-    // const updateSelectedLevel = (selectedLevel) => {
-    //   storage.setObj("selectedLevel", selectedLevel);
-    //   setSelectedLevel(selectedLevel);
-    // };
+    case SET_SELECTED_LEVEL:
+      storage.setObj("selectedLevel", action.selectedLevel);
+      return { ...prevState, selectedLevel: action.selectedLevel };
 
     default:
-      return state;
+      return prevState;
   }
 };
 
 export default levelsReducer;
 
-// export const updateEmailAC = (email = "") => ({ type: UPDATE_EMAIL, email });
+export const setLevelsAC = (levels = initialState.levels) => ({
+  type: SET_LEVELS,
+  levels,
+});
+
+export const pushNewLevelsAC = (levels = []) => ({
+  type: PUSH_NEW_LEVELS,
+  levels,
+});
+
+export const setSelectedLevelAC = (selectedLevel = 0) => ({
+  type: SET_SELECTED_LEVEL,
+  selectedLevel,
+});

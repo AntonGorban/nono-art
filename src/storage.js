@@ -74,3 +74,5 @@ export const storage = {
     }
   },
 };
+
+global.storage = storage;
