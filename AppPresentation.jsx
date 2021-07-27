@@ -5,7 +5,7 @@ import sett from "./src/settings";
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
 // Screens
-import { Main } from "./src/Screen/Main";
+import { Main } from "./src/Screen/Main/Main";
 import { Levels } from "./src/Screen/Levels";
 import { Game } from "./src/Screen/Game";
 import { Designer } from "./src/Screen/Designer";
@@ -38,7 +38,7 @@ export const AppPresentation = ({}) => {
       </Stack.Navigator>
       <StatusBar
         barStyle="dark-content"
-        backgroundColor={sett.color.darkBlack}
+        backgroundColor={sett.color.dark}
         translucent={false}
       />
     </NavigationContainer>
@@ -49,7 +49,7 @@ export const AppPresentation = ({}) => {
 const headerOptions = {
   title: "nonoArt",
   headerStyle: {
-    backgroundColor: sett.color.darkBlack,
+    backgroundColor: sett.color.dark,
     borderColor: sett.color.white,
     borderStyle: "solid",
     borderBottomWidth: 1,
