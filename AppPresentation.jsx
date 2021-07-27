@@ -6,7 +6,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
 // Screens
 import { Main } from "./src/Screen/Main/Main";
-import { Levels } from "./src/Screen/Levels";
+import { Levels } from "./src/Screen/Levels/Levels";
 import { Game } from "./src/Screen/Game";
 import { Designer } from "./src/Screen/Designer";
 import { ColorPicker } from "./src/GameGrid/ColorPicker";
