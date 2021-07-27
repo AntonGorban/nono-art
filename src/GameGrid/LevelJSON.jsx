@@ -6,7 +6,7 @@ import {
   TouchableOpacity,
   Linking,
 } from "react-native";
-import Context from "../context";
+import { Context } from "../context";
 import * as sett from "../settings.json";
 
 export const LevelJSON = ({ navigation }) => {

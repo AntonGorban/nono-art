@@ -1,7 +1,6 @@
 import React, { useState, useContext } from "react";
 import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import * as sett from "../settings.json";
-import { Header } from "../Header";
 
 export const Main = ({ navigation }) => {
   // const { Stack } = useContext(Context);

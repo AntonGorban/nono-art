@@ -1,7 +1,6 @@
 import React, { useContext } from "react";
 import { StyleSheet, Text, ScrollView, TouchableOpacity } from "react-native";
 import * as sett from "../settings.json";
-import { Header } from "../Header";
 
 export const Levels = ({ navigation }) => {
   const { levels, updateSelectedLevel, setProgress } = useContext(Context);

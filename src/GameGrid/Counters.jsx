@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { View, StyleSheet, TouchableOpacity, Text } from "react-native";
 import * as sett from "../settings.json";
-import Context from "../context";
+import { Context } from "../context";
 
 export const Counters = ({ mode, size }) => {
   const { level, data, clearLineData, designer } = useContext(Context);

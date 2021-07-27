@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { View, StyleSheet, TouchableNativeFeedback } from "react-native";
 import * as sett from "../settings.json";
-import Context from "../context";
+import { Context } from "../context";
 
 export const Cell = ({ cell, rowIndex, cellIndex, size }) => {
   const { level, updateData, selectedColor } = useContext(Context);

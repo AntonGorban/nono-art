@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { StyleSheet } from "react-native";
 import { TriangleColorPicker, toHsv, fromHsv } from "react-native-color-picker";
-import Context from "../context";
+import { Context } from "../context";
 import * as sett from "../settings.json";
 
 export const ColorPicker = ({ navigation }) => {

@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import { View, TouchableOpacity, StyleSheet, TextInput } from "react-native";
-import Context from "../context";
+import { Context } from "../context";
 import * as sett from "../settings.json";
 
 export const Colors = ({ setColorPickerProps }) => {

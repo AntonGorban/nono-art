@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { View, TouchableOpacity, StyleSheet, Image } from "react-native";
-import Context from "../context";
+import { Context } from "../context";
 import * as sett from "../settings.json";
 
 export const ClearButton = ({ size }) => {
