@@ -8,7 +8,7 @@ export const Main = ({ navigation }) => (
       { text: "Уровни", to: "Levels" },
       { text: "Продолжить", to: "Game" },
       { text: "Рисовать", to: "Designer" },
-      { text: "О приложении", to: "About" },
+      { text: "О игре", to: "About" },
     ].map((link) => (
       <TouchableHighlight
         key={`link-to.${link.to}`}

@@ -11,7 +11,7 @@ import { Game } from "./src/Screen/Game/Game";
 import { Designer } from "./src/Screen/Designer";
 import { ColorPicker } from "./src/GameGrid/ColorPicker";
 import { LevelJSON } from "./src/GameGrid/LevelJSON";
-import { About } from "./src/Screen/About";
+import { About } from "./src/Screen/About/About";
 // Для навигатора, используется только здесь
 const Stack = createStackNavigator();
 
