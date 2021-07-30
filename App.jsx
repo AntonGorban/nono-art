@@ -9,8 +9,6 @@ import { AppPresentation } from "./AppPresentation";
 class AppContainer extends React.Component {
   constructor(props) {
     super(props);
-    this.levels = props.levels;
-    this.selectedLevel = props.selectedLevel;
     this.setLevels = props.setLevels;
     this.pushNewLevels = props.pushNewLevels;
     this.setSelectedLevel = props.setSelectedLevel;
@@ -27,14 +25,14 @@ class AppContainer extends React.Component {
         .then((data) =>
           data !== null
             ? this.setSelectedLevel(data)
-            : storage.setObj("selectedLevel", this.selectedLevel)
+            : storage.setObj("selectedLevel", this.props.selectedLevel)
         ),
     ]);
 
     await getLevelsFromRepo().then((repoLevels) => {
-      if (repoLevels.length > this.levels.length) {
+      if (repoLevels.length > this.props.levels.length) {
         let newLevels = [];
-        for (let i = this.levels.length; i < repoLevels.length; i++) {
+        for (let i = this.props.levels.length; i < repoLevels.length; i++) {
           newLevels.push(repoLevels[i]);
         }
         this.pushNewLevels(newLevels);
@@ -44,9 +42,7 @@ class AppContainer extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
-    this.levels = this.props.levels;
-    this.selectedLevel = this.props.selectedLevel;
-    console.log(this.levels);
+    console.log(this.props.selectedLevel, this.props.levels);
   }
 
   render() {

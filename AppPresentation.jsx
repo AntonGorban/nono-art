@@ -7,7 +7,7 @@ import { NavigationContainer } from "@react-navigation/native";
 // Screens
 import { Main } from "./src/Screen/Main/Main";
 import { Levels } from "./src/Screen/Levels/Levels";
-import { Game } from "./src/Screen/Game";
+import { Game } from "./src/Screen/Game/Game";
 import { Designer } from "./src/Screen/Designer";
 import { ColorPicker } from "./src/GameGrid/ColorPicker";
 import { LevelJSON } from "./src/GameGrid/LevelJSON";
