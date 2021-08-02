@@ -5,7 +5,9 @@ import sett from "../../settings";
 import clearImg from "../../assets/img/redo.png";
 
 export const ClearButton = ({
-  cellSize = 20,
+  cellSize,
+  bigCellSize,
+  cellBorderRadius,
   onClick = () =>
     console.warn("onClick func not found on ClearButton.jsx component"),
 }) => (
@@ -13,9 +15,9 @@ export const ClearButton = ({
     <View
       style={{
         ...containerStyle,
-        width: cellSize * 2.6 - 4,
-        height: cellSize * 2.6 - 4,
-        borderRadius: Math.floor(cellSize / 5),
+        width: bigCellSize,
+        height: bigCellSize,
+        borderRadius: cellBorderRadius,
         borderTopLeftRadius: cellSize,
       }}
     >

@@ -12,14 +12,11 @@ import sett from "../../settings";
 
 import antogorImg from "../../assets/img/antogor.jpg";
 import dimasImg from "../../assets/img/dimas.jpg";
-
-import userIcon from "../../assets/img/fa-user-regular.svg";
-import mailIcon from "../../assets/img/fa-envelope-regular.svg";
-
-import coderIcon from "../../assets/img/fa-terminal-solid.svg";
-import designerIcon from "../../assets/img/fa-icons-solid.svg";
-
-import githubIcon from "../../assets/img/fa-github-brands.svg";
+import userIcon from "../../assets/img/user.png";
+import mailIcon from "../../assets/img/mail.png";
+import coderIcon from "../../assets/img/terminal.png";
+import designerIcon from "../../assets/img/icons.png";
+import githubIcon from "../../assets/img/github.png";
 
 export const About = () => (
   <View style={styles.container}>
@@ -38,13 +35,14 @@ export const About = () => (
       </Text>
       <View style={styles.person}>
         <TouchableOpacity
+          style={{ alignItems: "center", justifyContent: "center" }}
           onPress={() => Linking.openURL("https://github.com/AntonGorban")}
           activeOpacity={0.7}
         >
           <Image style={styles.img} source={antogorImg} />
         </TouchableOpacity>
         <View style={styles.field}>
-          <Image style={styles.userIcon} source={userIcon} />
+          <Image style={styles.fieldImg} source={userIcon} />
           <Text style={styles.fieldText}>Антон Горбань</Text>
         </View>
         <TouchableOpacity
@@ -52,24 +50,25 @@ export const About = () => (
           activeOpacity={0.7}
         >
           <View style={styles.field}>
-            <Image style={styles.mailIcon} source={mailIcon} />
+            <Image style={styles.fieldImg} source={mailIcon} />
             <Text style={styles.fieldText}>antogor.work@gmail.com</Text>
           </View>
         </TouchableOpacity>
         <View style={styles.field}>
-          <Image style={styles.coderIcon} source={coderIcon} />
+          <Image style={styles.fieldImg} source={coderIcon} />
           <Text style={styles.fieldText}>Программист, UX / UI</Text>
         </View>
       </View>
       <View style={styles.person}>
         <TouchableOpacity
+          style={{ alignItems: "center", justifyContent: "center" }}
           onPress={() => Linking.openURL("https://vk.com/donetskuy")}
           activeOpacity={0.7}
         >
           <Image style={styles.img} source={dimasImg} />
         </TouchableOpacity>
         <View style={styles.field}>
-          <Image style={styles.userIcon} source={userIcon} />
+          <Image style={styles.fieldImg} source={userIcon} />
           <Text style={styles.fieldText}>Дмитрий Прачёв</Text>
         </View>
         <TouchableOpacity
@@ -77,12 +76,12 @@ export const About = () => (
           activeOpacity={0.7}
         >
           <View style={styles.field}>
-            <Image style={styles.mailIcon} source={mailIcon} />
+            <Image style={styles.fieldImg} source={mailIcon} />
             <Text style={styles.fieldText}>0669600185d@gmail.com</Text>
           </View>
         </TouchableOpacity>
         <View style={styles.field}>
-          <Image style={styles.designerIcon} source={designerIcon} />
+          <Image style={styles.fieldImg} source={designerIcon} />
           <Text style={styles.fieldText}>Дизайнер уровней, UX / UI</Text>
         </View>
       </View>
@@ -95,7 +94,7 @@ export const About = () => (
           activeOpacity={0.7}
         >
           <View style={styles.field}>
-            <Image style={styles.designerIcon} source={githubIcon} />
+            <Image style={styles.fieldImg} source={githubIcon} />
             <Text style={styles.fieldText}>
               github.com/AntonGorban/nono-art
             </Text>
@@ -110,7 +109,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: sett.color.black,
-    paddingVertical: 25,
+    paddingTop: 25,
   },
   title: {
     marginBottom: 25,
@@ -131,7 +130,7 @@ const styles = StyleSheet.create({
   img: {
     width: 150,
     height: 150,
-    marginHorizontal: "auto",
+    paddingHorizontal: "auto",
     marginVertical: 15,
     borderRadius: 150 / 2,
   },
@@ -149,38 +148,19 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
-  userIcon: {
-    width: 131 / 9,
-    height: 150 / 9,
-    padding: 6,
-  },
-  mailIcon: {
-    width: 150 / 9,
-    height: 150 / 9,
-    padding: 6,
-  },
-  coderIcon: {
-    width: 188 / 9,
-    height: 155 / 9,
-    padding: 6,
-  },
-  designerIcon: {
-    width: 150 / 9,
-    height: 150 / 9,
-    padding: 6,
+  fieldImg: {
+    width: 20,
+    height: 20,
+    padding: 5,
   },
   fieldText: {
     color: sett.color.white,
     fontFamily: sett.font.montserrat.regular,
     fontSize: 16,
     padding: 6,
+    textAlign: "center",
   },
   repo: {
     marginVertical: 30,
-  },
-  githubIcon: {
-    width: 145 / 9,
-    height: 150 / 9,
-    padding: 6,
   },
 });

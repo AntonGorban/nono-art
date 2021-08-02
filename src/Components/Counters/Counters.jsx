@@ -7,7 +7,10 @@ import { Counter } from "../Counter/Counter";
 export const Counters = ({
   counters = [[0, 0, 0]],
   colors = [sett.color.dark, sett.color.dark, sett.color.dark],
-  cellSize = 20,
+  cellSize,
+  cellBorderRadius,
+  bigCellSize,
+  counterFontSize,
   horizontal = true,
   onClick = () =>
     console.warn("onClick func not found on Counters.jsx component"),
@@ -19,6 +22,9 @@ export const Counters = ({
         values={values}
         colors={colors}
         cellSize={cellSize}
+        cellBorderRadius={cellBorderRadius}
+        bigCellSize={bigCellSize}
+        counterFontSize={counterFontSize}
         horizontal={horizontal}
         counterIdx={counterIdx}
         onClick={() => onClick(counterIdx)}

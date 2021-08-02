@@ -5,7 +5,10 @@ import sett from "../../settings";
 export const Counter = ({
   values = [0, 0, 0],
   colors = [sett.color.dark, sett.color.dark, sett.color.dark],
-  cellSize = 20,
+  cellSize,
+  cellBorderRadius,
+  bigCellSize,
+  counterFontSize,
   counterIdx,
   horizontal = true,
   onClick = () =>
@@ -15,9 +18,9 @@ export const Counter = ({
     <View
       style={{
         ...counterStyle,
-        width: horizontal ? cellSize * 2.6 - 4 : cellSize,
-        height: horizontal ? cellSize : cellSize * 2.6 - 4,
-        borderRadius: Math.floor(cellSize / 5),
+        width: horizontal ? bigCellSize : cellSize,
+        height: horizontal ? cellSize : bigCellSize,
+        borderRadius: cellBorderRadius,
         flexDirection: horizontal ? "row" : "column",
       }}
     >
@@ -25,7 +28,7 @@ export const Counter = ({
         <Text
           style={{
             ...textStyle,
-            fontSize: Math.floor(cellSize / 2),
+            fontSize: counterFontSize,
             color: colors[valueIdx],
           }}
           key={`counter.${

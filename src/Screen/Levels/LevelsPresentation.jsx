@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
   wrap: {
     flex: 1,
     backgroundColor: sett.color.black,
-    paddingVertical: 25,
+    paddingTop: 25,
   },
   title: {
     marginBottom: 25,
@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     width: "80%",
-    marginHorizontal: "auto",
+    marginHorizontal: "10%",
     paddingVertical: 20,
     paddingHorizontal: 5,
     borderWidth: 2,

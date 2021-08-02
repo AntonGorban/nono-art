@@ -5,7 +5,8 @@ import sett from "../../settings";
 export const Cell = ({
   cellColor = null,
   selectedColor = null,
-  cellSize = 20,
+  cellSize,
+  cellBorderRadius,
   onClick = () => console.warn("onClick func not found on Cell.jsx component"),
 }) => (
   <TouchableHighlight
@@ -24,7 +25,7 @@ export const Cell = ({
         backgroundColor: cellColor || sett.color.white,
         width: cellSize,
         height: cellSize,
-        borderRadius: Math.floor(cellSize / 5),
+        borderRadius: cellBorderRadius,
       }}
     />
   </TouchableHighlight>

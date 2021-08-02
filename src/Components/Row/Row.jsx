@@ -8,7 +8,8 @@ export const Row = ({
   row,
   color = null,
   colors = ["red", "red", "red"],
-  cellSize = 20,
+  cellSize,
+  cellBorderRadius,
   setProgressCell = () =>
     console.warn("setProgressCell func not found on Row.jsx component"),
 }) => (
@@ -19,6 +20,7 @@ export const Row = ({
         cellColor={colors[cell]}
         selectedColor={color}
         cellSize={cellSize}
+        cellBorderRadius={cellBorderRadius}
         onClick={() => setProgressCell(cellIdx)}
       />
     ))}

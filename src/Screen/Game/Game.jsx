@@ -29,7 +29,12 @@ class GameContainer extends React.Component {
         () => props.removeProgressAll(props.selectedLevel)
       );
 
-    this.state = { cellSize: 20 };
+    this.state = {
+      cellSize: 20,
+      cellBorderRadius: Math.floor(20 / 5),
+      bigCellSize: 20 * 2.6 - 4,
+      counterFontSize: Math.floor(20 / 2),
+    };
   }
 
   removeProgressAlert = (title, massage, cbFunc) =>
@@ -48,18 +53,58 @@ class GameContainer extends React.Component {
       { cancelable: true }
     );
 
-  setCellSize = (event) =>
+  setCellSize = (event) => {
+    const size =
+      Math.min(
+        Math.floor(
+          event.nativeEvent.layout.width / (this.props.level.width + 2.5)
+        ),
+        Math.floor(
+          event.nativeEvent.layout.height / (this.props.level.height + 2.5)
+        )
+      ) - 2;
+    console.log("setCellSize");
     this.setState({
-      cellSize:
-        Math.min(
-          Math.floor(
-            event.nativeEvent.layout.width / (this.props.level.width + 2.5)
-          ),
-          Math.floor(
-            event.nativeEvent.layout.height / (this.props.level.height + 2.5)
-          )
-        ) - 2,
+      cellSize: size,
+      cellBorderRadius: Math.floor(size / 5),
+      bigCellSize: size * 2.6 - 4,
+      counterFontSize: Math.floor(size / 2),
     });
+  };
+
+  accumulateCountersValues = (horizontal) => {
+    const accumulator = [];
+    for (
+      let i = 0;
+      i <
+      (horizontal
+        ? this.props.level.art.length
+        : this.props.level.art[0].length);
+      i++
+    ) {
+      let counterValue = [0, 0, 0];
+      for (
+        let j = 0;
+        j <
+        (horizontal
+          ? this.props.level.art[0].length
+          : this.props.level.art.length);
+        j++
+      ) {
+        this.props.level.art[horizontal ? i : j][horizontal ? j : i] !== null &&
+          counterValue[
+            this.props.level.art[horizontal ? i : j][horizontal ? j : i]
+          ]++;
+        this.props.level.progress[horizontal ? i : j][horizontal ? j : i] !==
+          null &&
+          counterValue[
+            this.props.level.progress[horizontal ? i : j][horizontal ? j : i]
+          ]--;
+      }
+      accumulator.push(counterValue);
+    }
+    return accumulator;
+  };
 
   componentDidMount() {}
 
@@ -72,6 +117,11 @@ class GameContainer extends React.Component {
         selectedLevel={this.props.selectedLevel}
         selectedColor={this.props.selectedColor}
         cellSize={this.state.cellSize}
+        cellBorderRadius={this.state.cellBorderRadius}
+        bigCellSize={this.state.bigCellSize}
+        counterFontSize={this.state.counterFontSize}
+        horizontalCounters={this.accumulateCountersValues(true)}
+        verticalCounters={this.accumulateCountersValues(false)}
         setCellSize={this.setCellSize}
         setProgressCell={this.setProgressCell}
         setSelectedColor={this.setSelectedColor}

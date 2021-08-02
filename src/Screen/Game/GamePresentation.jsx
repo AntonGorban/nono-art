@@ -10,7 +10,12 @@ export const GamePresentation = ({
   level,
   selectedLevel,
   selectedColor,
-  cellSize = 20,
+  cellSize,
+  cellBorderRadius,
+  bigCellSize,
+  counterFontSize,
+  horizontalCounters = [[0, 0, 0]],
+  verticalCounters = [[0, 0, 0]],
   setCellSize = () =>
     console.warn(
       "setCellSize func not found on GamePresentation.jsx component"
@@ -42,6 +47,11 @@ export const GamePresentation = ({
       level={level}
       color={level.colors[selectedColor]}
       cellSize={cellSize}
+      cellBorderRadius={cellBorderRadius}
+      bigCellSize={bigCellSize}
+      counterFontSize={counterFontSize}
+      horizontalCounters={horizontalCounters}
+      verticalCounters={verticalCounters}
       setCellSize={setCellSize}
       setProgressCell={setProgressCell}
       removeProgressRow={removeProgressRow}
