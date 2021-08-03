@@ -63,7 +63,7 @@ class GameContainer extends React.Component {
           event.nativeEvent.layout.height / (this.props.level.height + 2.5)
         )
       ) - 2;
-    console.log("setCellSize");
+    console.log("cellSize = ", size);
     this.setState({
       cellSize: size,
       cellBorderRadius: Math.floor(size / 5),

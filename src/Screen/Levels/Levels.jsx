@@ -5,7 +5,6 @@ import { LevelsPresentation } from "./LevelsPresentation";
 class LevelsContainer extends React.Component {
   constructor(props) {
     super(props);
-    console.log(props);
     this.levels = props.levels;
     this.selectedLevel = props.selectedLevel;
     this.startLevel = (selectedLevel) => {

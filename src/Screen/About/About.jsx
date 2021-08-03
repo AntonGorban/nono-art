@@ -6,6 +6,8 @@ import {
   Text,
   Image,
   TouchableOpacity,
+  TouchableNativeFeedback,
+  Platform,
   Linking,
 } from "react-native";
 import sett from "../../settings";
@@ -34,13 +36,29 @@ export const About = () => (
         Игра была разработана в команде из двух человек:
       </Text>
       <View style={styles.person}>
-        <TouchableOpacity
-          style={{ alignItems: "center", justifyContent: "center" }}
-          onPress={() => Linking.openURL("https://github.com/AntonGorban")}
-          activeOpacity={0.7}
-        >
-          <Image style={styles.img} source={antogorImg} />
-        </TouchableOpacity>
+        {Platform.OS === "android" ? (
+          <TouchableNativeFeedback
+            background={TouchableNativeFeedback.Ripple(
+              sett.color.dark,
+              true,
+              80
+            )}
+            useForeground={true}
+            onPress={() => Linking.openURL("https://github.com/AntonGorban")}
+          >
+            <View style={{ alignItems: "center", justifyContent: "center" }}>
+              <Image style={styles.img} source={antogorImg} />
+            </View>
+          </TouchableNativeFeedback>
+        ) : (
+          <TouchableOpacity
+            style={{ alignItems: "center", justifyContent: "center" }}
+            onPress={() => Linking.openURL("https://github.com/AntonGorban")}
+            activeOpacity={0.7}
+          >
+            <Image style={styles.img} source={antogorImg} />
+          </TouchableOpacity>
+        )}
         <View style={styles.field}>
           <Image style={styles.fieldImg} source={userIcon} />
           <Text style={styles.fieldText}>Антон Горбань</Text>
@@ -60,13 +78,29 @@ export const About = () => (
         </View>
       </View>
       <View style={styles.person}>
-        <TouchableOpacity
-          style={{ alignItems: "center", justifyContent: "center" }}
-          onPress={() => Linking.openURL("https://vk.com/donetskuy")}
-          activeOpacity={0.7}
-        >
-          <Image style={styles.img} source={dimasImg} />
-        </TouchableOpacity>
+        {Platform.OS === "android" ? (
+          <TouchableNativeFeedback
+            background={TouchableNativeFeedback.Ripple(
+              sett.color.dark,
+              true,
+              80
+            )}
+            useForeground={true}
+            onPress={() => Linking.openURL("https://vk.com/donetskuy")}
+          >
+            <View style={{ alignItems: "center", justifyContent: "center" }}>
+              <Image style={styles.img} source={dimasImg} />
+            </View>
+          </TouchableNativeFeedback>
+        ) : (
+          <TouchableOpacity
+            style={{ alignItems: "center", justifyContent: "center" }}
+            onPress={() => Linking.openURL("https://vk.com/donetskuy")}
+            activeOpacity={0.7}
+          >
+            <Image style={styles.img} source={dimasImg} />
+          </TouchableOpacity>
+        )}
         <View style={styles.field}>
           <Image style={styles.fieldImg} source={userIcon} />
           <Text style={styles.fieldText}>Дмитрий Прачёв</Text>
