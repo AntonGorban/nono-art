@@ -12,6 +12,7 @@ class AppContainer extends React.Component {
     this.setLevels = props.setLevels;
     this.pushNewLevels = props.pushNewLevels;
     this.setSelectedLevel = props.setSelectedLevel;
+    this.setDesignerState = props.setDesignerState;
   }
 
   async componentDidMount() {
@@ -27,6 +28,10 @@ class AppContainer extends React.Component {
             ? this.setSelectedLevel(data)
             : storage.setObj("selectedLevel", this.props.selectedLevel)
         ),
+
+      storage
+        .getObj("designer")
+        .then((data) => data !== null && this.setDesignerState(data)),
     ]);
 
     await getLevelsFromRepo().then((repoLevels) => {
@@ -82,11 +87,14 @@ import {
   setSelectedLevelAC,
 } from "./src/redux/levelsReducer";
 
+import { setDesignerStateAC } from "./src/redux/designerReducer";
+
 const mapDispatchToProps = (dispatch) => ({
   setLevels: (levels) => dispatch(setLevelsAC(levels)),
   pushNewLevels: (levels) => dispatch(pushNewLevelsAC(levels)),
   setSelectedLevel: (selectedLevel) =>
     dispatch(setSelectedLevelAC(selectedLevel)),
+  setDesignerState: (state) => dispatch(setDesignerStateAC(state)),
 });
 
 const App = connect(mapStateToProps, mapDispatchToProps)(AppContainer);

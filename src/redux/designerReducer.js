@@ -13,7 +13,6 @@ const REMOVE_ART_COL = "REMOVE-ART-COL";
 const REMOVE_ART_ALL = "REMOVE-ART-ALL";
 
 import { storage } from "../storage";
-//   storage.setObj("designer", state);
 
 const initialState = {
   name: "",
@@ -36,20 +35,20 @@ const initialState = {
 const designerReducer = (prevState = initialState, action) => {
   switch (action.type) {
     case SET_DESIGNER_STATE:
+      storage.setObj("designer", { ...prevState, ...action.state });
       return { ...prevState, ...action.state };
 
     case SET_NAME:
-      return {
-        ...prevState,
-        name: action.name
-          .replace(/[^\wа-яё\s\d\-]/gim, "")
-          .replace(/(\s\s)/gim, " ")
-          .replace(/(\-\-)/gim, " ")
-          .substring(0, 25),
-      };
+      var name = action.name
+        .replace(/[^\wа-яё\s\d\-]/gim, "")
+        .replace(/(\s\s)/gim, " ")
+        .replace(/(\-\-)/gim, " ")
+        .substring(0, 25);
+      storage.setObj("designer", { ...prevState, name });
+      return { ...prevState, name };
 
     case SET_CELL:
-      const art = prevState.art.map((row, rowIdx) =>
+      var art = prevState.art.map((row, rowIdx) =>
         rowIdx !== action.row
           ? row
           : row.map((col, colIdx) =>
@@ -60,28 +59,27 @@ const designerReducer = (prevState = initialState, action) => {
                 : null
             )
       );
+      storage.setObj("designer", { ...prevState, art });
       return { ...prevState, art };
 
     case SET_COLOR:
-      return {
-        ...prevState,
-        colors: prevState.colors.map((color, idx) =>
-          idx !== action.idx
-            ? color
-            : `#${action.color
-                .replace(/[^\dabcdef]/gim, "")
-                .substring(0, 6)
-                .toUpperCase()}`
-        ),
-      };
+      var colors = prevState.colors.map((color, idx) =>
+        idx !== action.idx
+          ? color
+          : `#${action.color
+              .replace(/[^\dabcdef]/gim, "")
+              .substring(0, 6)
+              .toUpperCase()}`
+      );
+      storage.setObj("designer", { ...prevState, colors });
+      return { ...prevState, colors };
 
     case PICK_COLOR:
-      return {
-        ...prevState,
-        colors: prevState.colors.map((color, idx) =>
-          idx !== prevState.selectedColor ? color : action.color.toUpperCase()
-        ),
-      };
+      var colors = prevState.colors.map((color, idx) =>
+        idx !== prevState.selectedColor ? color : action.color.toUpperCase()
+      );
+      storage.setObj("designer", { ...prevState, colors });
+      return { ...prevState, colors };
 
     case SET_SELECTED_COLOR:
       return { ...prevState, selectedColor: action.selectedColor };
