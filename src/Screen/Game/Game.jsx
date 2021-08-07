@@ -53,6 +53,21 @@ class GameContainer extends React.Component {
       { cancelable: true }
     );
 
+  winAlert = () =>
+    Alert.alert(
+      "Вы выиграли",
+      `Поздравляем, вы прошли уровень ${this.props.level.name}`,
+      [
+        {
+          text: "Посмотреть еще на эту красоту",
+        },
+        {
+          text: "Выйти из уровня",
+          onPress: () => this.props.navigation.goBack(),
+        },
+      ]
+    );
+
   setCellSize = (event) => {
     const size =
       Math.min(
@@ -108,7 +123,22 @@ class GameContainer extends React.Component {
 
   componentDidMount() {}
 
-  componentDidUpdate() {}
+  componentDidUpdate() {
+    if (
+      [
+        this.accumulateCountersValues(true)
+          .map((counter) => counter.join(""))
+          .join(""),
+        this.accumulateCountersValues(false)
+          .map((counter) => counter.join(""))
+          .join(""),
+      ]
+        .join("")
+        .replace(/[0]/gim, "").length === 0
+    ) {
+      this.winAlert();
+    }
+  }
 
   render() {
     return (
