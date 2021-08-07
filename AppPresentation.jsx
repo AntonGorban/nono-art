@@ -1,6 +1,6 @@
 // General
 import React from "react";
-import { StyleSheet, Text, View, Button, Alert, StatusBar } from "react-native";
+import { StatusBar } from "react-native";
 import sett from "./src/settings";
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
@@ -8,10 +8,11 @@ import { NavigationContainer } from "@react-navigation/native";
 import { Main } from "./src/Screen/Main/Main";
 import { Levels } from "./src/Screen/Levels/Levels";
 import { Game } from "./src/Screen/Game/Game";
-import { Designer } from "./src/Screen/Designer";
-import { ColorPicker } from "./src/GameGrid/ColorPicker";
-import { LevelJSON } from "./src/GameGrid/LevelJSON";
+import { Designer } from "./src/Screen/Designer/Designer";
 import { About } from "./src/Screen/About/About";
+
+import { ColorPicker } from "./src/Screen/ColorPicker/ColorPicker";
+import { LevelJSON } from "./src/GameGrid/LevelJSON";
 // Для навигатора, используется только здесь
 const Stack = createStackNavigator();
 
@@ -24,8 +25,8 @@ export const AppPresentation = ({}) => {
           { name: "Levels", component: Levels },
           { name: "Game", component: Game },
           { name: "Designer", component: Designer },
-          { name: "ColorPicker", component: ColorPicker },
           { name: "About", component: About },
+          { name: "ColorPicker", component: ColorPicker },
           { name: "LevelJSON", component: LevelJSON },
         ].map((screen) => (
           <Stack.Screen
@@ -37,7 +38,7 @@ export const AppPresentation = ({}) => {
         ))}
       </Stack.Navigator>
       <StatusBar
-        barStyle="dark-content"
+        barStyle="light-content"
         backgroundColor={sett.color.dark}
         translucent={false}
       />
