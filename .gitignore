@@ -69,3 +69,6 @@ app/*.key
 app/*.mobileprovision
 app/*.orig.*
 app/web-build/
+
+# server
+server/.env
