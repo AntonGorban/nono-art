@@ -5,6 +5,7 @@ const path = require("path");
 const fs = require("fs-extra");
 
 const router = require("./routes/index");
+const errorHandler = require("./middleware/ErrorHandlingMiddleware");
 
 const PORT = process.argv[2] || process.env.PORT;
 
@@ -17,6 +18,8 @@ app.use(express.json());
 app.use(express.static(path.resolve(__dirname, "static")));
 
 app.use("/api", router);
+
+app.use(errorHandler);
 
 const start = async () => {
   try {
