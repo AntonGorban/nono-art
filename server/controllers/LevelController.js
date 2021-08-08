@@ -7,6 +7,88 @@ class LevelController {
     try {
       const { name = null, colors = null, art = null } = req.body;
 
+      if (!name) return next(ApiError.badRequest("необходимо название уровня"));
+      if (typeof name !== "string")
+        return next(ApiError.badRequest("название уровня должно быть строкой"));
+      if (name.length < 3)
+        return next(
+          ApiError.badRequest(
+            "название уровня должно не должно быть короче 3 символов"
+          )
+        );
+      if (name.length > 25)
+        return next(
+          ApiError.badRequest(
+            "название уровня должно не быть блиннее 25 символов"
+          )
+        );
+      if (/[^\wа-яё\s\d\-]/gim.test(name))
+        return next(
+          ApiError.badRequest(
+            "некорректное название уровня, допускаются буквы, цифры, пробелы и тире"
+          )
+        );
+
+      if (!colors) return next(ApiError.badRequest("необходим набор цветов"));
+      if (typeof colors !== "object")
+        return next(ApiError.badRequest("набор цветов должен быть массивом"));
+      if (!Array.isArray(colors))
+        return next(ApiError.badRequest("набор цветов должен быть массивом"));
+      if (colors.length !== 3)
+        return next(ApiError.badRequest("должно быть три цвета"));
+      if (
+        colors.filter((color) => !/^#(?:[0-9a-f]{3}){1,2}$/gi.test(color))
+          .length > 0
+      )
+        return next(ApiError.badRequest("невалидный набор цветов"));
+
+      if (!art) return next(ApiError.badRequest("необходим уровень"));
+      if (typeof art !== "object")
+        return next(ApiError.badRequest("уровень должен быть массивом"));
+      if (!Array.isArray(art))
+        return next(ApiError.badRequest("уровень должен быть массивом"));
+      if (art.filter((row) => !Array.isArray(row)).length > 0)
+        return next(
+          ApiError.badRequest("уровень должен быть массивом массивом")
+        );
+      if (
+        art.filter(
+          (row) =>
+            row.filter((col) => ![0, 1, 2, null].includes(col)).length > 0
+        ).length > 0
+      )
+        return next(ApiError.badRequest("невалидные значения в уровне"));
+      if (art.filter((row) => row.length !== art[0].length).length > 0)
+        return next(
+          ApiError.badRequest(
+            "количество колонок в уровне должно быть одинаковым"
+          )
+        );
+      if (art.length < 3)
+        return next(
+          ApiError.badRequest(
+            "количество строк в уровне не должно быть меньше 3"
+          )
+        );
+      if (art.length > 25)
+        return next(
+          ApiError.badRequest(
+            "количество строк в уровне не должно быть больше 25"
+          )
+        );
+      if (art[0].length < 3)
+        return next(
+          ApiError.badRequest(
+            "количество колонок в уровне не должно быть меньше 3"
+          )
+        );
+      if (art[0].length > 20)
+        return next(
+          ApiError.badRequest(
+            "количество колонок в уровне не должно быть больше 20"
+          )
+        );
+
       const level = {
         name,
         width: art[0].length,
