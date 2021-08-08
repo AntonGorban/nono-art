@@ -72,3 +72,5 @@ app/web-build/
 
 # server
 server/.env
+server/static
+server/levels/shared

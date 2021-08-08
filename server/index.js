@@ -10,7 +10,8 @@ const errorHandler = require("./middleware/ErrorHandlingMiddleware");
 const PORT = process.argv[2] || process.env.PORT;
 
 fs.ensureDir(path.resolve(__dirname, "static"));
-fs.ensureDir(path.resolve(__dirname, "new-levels"));
+fs.ensureDir(path.resolve(__dirname, "levels"));
+fs.ensureDir(path.resolve(__dirname, "levels", "shared"));
 
 const app = express();
 app.use(cors());
