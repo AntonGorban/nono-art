@@ -51,18 +51,6 @@ class AppContainer extends React.Component {
   }
 
   render() {
-    // Context.Provider value={{
-    //   colorPickerProps,
-    //   setColorPickerProps,
-    //   levelJSONText,
-    //   setLevelJSONText,
-    //   levels,
-    //   selectedLevel,
-    //   updateSelectedLevel,
-    //   progress,
-    //   setProgress,
-    //   updateProgress,
-    // }}
     return <AppPresentation />;
   }
 }
