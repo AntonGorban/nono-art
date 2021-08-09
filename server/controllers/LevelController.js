@@ -1,6 +1,7 @@
 const ApiError = require("../error/ApiError");
 const path = require("path");
 const fs = require("fs-extra");
+const { sendSharedLevelMail } = require("../mailer/mailer");
 
 class LevelController {
   async sharing(req, res, next) {
@@ -116,6 +117,12 @@ class LevelController {
         minute: "2-digit",
         second: "2-digit",
       });
+
+      try {
+        await sendSharedLevelMail({ level, date, ip: req.ip });
+      } catch (error) {
+        console.error(error);
+      }
 
       try {
         await fs
