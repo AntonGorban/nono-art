@@ -2,7 +2,7 @@
   "expo": {
     "name": "nonoArt",
     "slug": "nonoArt",
-    "version": "1.0.0",
+    "version": "2.0.0",
     "orientation": "portrait",
     "icon": "./src/assets/icon.png",
     "sdkVersion": "40.0.0",
@@ -19,12 +19,12 @@
     ],
     "ios": {
       "bundleIdentifier": "com.antogor.nonoArt",
-      "buildNumber": "1.0.0",
+      "buildNumber": "2.0.0",
       "supportsTablet": true
     },
     "android": {
       "package": "com.antogor.nonoArt",
-      "versionCode": 1,
+      "versionCode": 2,
       "adaptiveIcon": {
         "foregroundImage": "./src/assets/icon.png",
         "backgroundColor": "#2d2d2d"
