@@ -12,7 +12,8 @@ import { Designer } from "./src/Screen/Designer/Designer";
 import { About } from "./src/Screen/About/About";
 
 import { ColorPicker } from "./src/Screen/ColorPicker/ColorPicker";
-import { LevelJSON } from "./src/GameGrid/LevelJSON";
+import { Share } from "./src/Screen/Share/Share";
+
 // Для навигатора, используется только здесь
 const Stack = createStackNavigator();
 
@@ -27,7 +28,7 @@ export const AppPresentation = ({}) => {
           { name: "Designer", component: Designer },
           { name: "About", component: About },
           { name: "ColorPicker", component: ColorPicker },
-          { name: "LevelJSON", component: LevelJSON },
+          { name: "Share", component: Share },
         ].map((screen) => (
           <Stack.Screen
             key={`screen-${screen.name}`}

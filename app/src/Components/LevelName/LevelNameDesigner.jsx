@@ -22,7 +22,8 @@ export const LevelNameDesigner = ({
     console.warn("newCol func not found on LevelNameDesigner.jsx component"),
   removeCol = () =>
     console.warn("removeCol func not found on LevelNameDesigner.jsx component"),
-  navigation,
+  toShare = () =>
+    console.warn("toShare func not found on LevelNameDesigner.jsx component"),
 }) => (
   <View style={styles.container}>
     <View style={styles.wrapper}>
@@ -55,7 +56,7 @@ export const LevelNameDesigner = ({
         activeOpacity={0.3}
         underlayColor={sett.color.dark}
         style={styles.shareContainer}
-        onPress={() => console.log("Coming soon...")}
+        onPress={toShare}
       >
         <View>
           <Text style={styles.shareText}>{"поделиться >"}</Text>

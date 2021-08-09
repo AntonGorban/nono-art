@@ -15,6 +15,7 @@ class DesignerContainer extends React.Component {
       props.setSelectedColor(selectedColor);
       props.navigation.navigate("ColorPicker");
     };
+    this.toShare = () => props.navigation.navigate("Share");
     this.setSelectedColor = (selectedColor) =>
       props.setSelectedColor(selectedColor);
     this.newRow = () => props.newRow();
@@ -135,6 +136,7 @@ class DesignerContainer extends React.Component {
         setCellSize={this.setCellSize}
         setCell={this.setCell}
         toColorPicker={this.toColorPicker}
+        toShare={this.toShare}
         setSelectedColor={this.setSelectedColor}
         removeArtRow={this.removeArtRow}
         removeArtCol={this.removeArtCol}

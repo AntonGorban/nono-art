@@ -27,6 +27,10 @@ export const DesignerPresentation = ({
     console.warn(
       "toColorPicker func not found on DesignerPresentation.jsx component"
     ),
+  toShare = () =>
+    console.warn(
+      "toShare func not found on DesignerPresentation.jsx component"
+    ),
   setSelectedColor = () =>
     console.warn(
       "setSelectedColor func not found on DesignerPresentation.jsx component"
@@ -74,6 +78,7 @@ export const DesignerPresentation = ({
       removeRow={removeRow}
       newCol={newCol}
       removeCol={removeCol}
+      toShare={toShare}
     />
     <GameGrid
       level={level}
