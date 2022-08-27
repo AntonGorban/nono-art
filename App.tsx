@@ -1,21 +1,29 @@
-import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
+import * as Font from 'expo-font';
+import * as SplashScreen from 'expo-splash-screen';
+import { useEffect, useState } from 'react';
+
+import { Main } from './Main';
+import { FontFamily } from './src/utils/FontFamily';
+
+SplashScreen.preventAutoHideAsync();
 
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up to App.tsx start working on your app!</Text>
-      <Text>Welcome</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
+  const [appIsReady, setAppIsReady] = useState<boolean>(false);
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
+  useEffect(() => {
+    Font.loadAsync({
+      [FontFamily.montserratAltLight]: require('./assets/fonts/MontserratAlternates-Light.otf'),
+      [FontFamily.montserratAltRegular]: require('./assets/fonts/MontserratAlternates-Regular.otf'),
+      [FontFamily.montserratAltBold]: require('./assets/fonts/MontserratAlternates-Bold.otf'),
+      [FontFamily.frederickaTheGreat]: require('./assets/fonts/FrederickatheGreat-Regular.otf'),
+    }).then(() => setAppIsReady(true));
+  }, []);
+
+  useEffect(() => {
+    if (appIsReady) SplashScreen.hideAsync();
+  }, [appIsReady]);
+
+  if (!appIsReady) return null;
+
+  return <Main />;
+}

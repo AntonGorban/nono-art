@@ -1,10 +1,10 @@
-import React from "react";
-import { View } from "react-native";
-import sett from "../../settings";
+import React from 'react';
+import { View } from 'react-native';
+import sett from '../../settings';
 
-import { Row } from "../../Components/Row/Row";
-import { Counters } from "../../Components/Counters/Counters";
-import { ClearButton } from "../../Components/ClearButton/ClearButton";
+import { Row } from '../Row/Row';
+import { Counters } from '../Counters/Counters';
+import { ClearButton } from '../ClearButton/ClearButton';
 
 export const GameGrid = ({
   level,
@@ -15,16 +15,11 @@ export const GameGrid = ({
   counterFontSize,
   horizontalCounters = [[0, 0, 0]],
   verticalCounters = [[0, 0, 0]],
-  setCellSize = () =>
-    console.warn("setCellSize func not found on GameGrid.jsx component"),
-  setProgressCell = () =>
-    console.warn("setProgressCell func not found on GameGrid.jsx component"),
-  removeProgressRow = () =>
-    console.warn("removeProgressRow func not found on GameGrid.jsx component"),
-  removeProgressCol = () =>
-    console.warn("removeProgressCol func not found on GameGrid.jsx component"),
-  removeProgressAll = () =>
-    console.warn("removeProgressAll func not found on GameGrid.jsx component"),
+  setCellSize = () => console.warn('setCellSize func not found on GameGrid.jsx component'),
+  setProgressCell = () => console.warn('setProgressCell func not found on GameGrid.jsx component'),
+  removeProgressRow = () => console.warn('removeProgressRow func not found on GameGrid.jsx component'),
+  removeProgressCol = () => console.warn('removeProgressCol func not found on GameGrid.jsx component'),
+  removeProgressAll = () => console.warn('removeProgressAll func not found on GameGrid.jsx component'),
 }) => (
   <View style={wrapStyle} onLayout={setCellSize}>
     <View style={containerStyle}>
@@ -77,11 +72,11 @@ export const GameGrid = ({
 
 const wrapStyle = {
   flex: 1,
-  alignItems: "center",
-  justifyContent: "center",
-  width: "100%",
+  alignItems: 'center',
+  justifyContent: 'center',
+  width: '100%',
 };
 
 const containerStyle = {
-  flexDirection: "row",
+  flexDirection: 'row',
 };

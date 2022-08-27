@@ -6,7 +6,7 @@
     "owner": "antongorban",
     "currentFullName": "@antongorban/nonoArt",
     "privacy": "public",
-    "platforms": ["android"],
+    "platforms": ["android", "web"],
     "githubUrl": "https://github.com/AntonGorban/nono-art",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
