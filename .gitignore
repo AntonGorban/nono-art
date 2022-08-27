@@ -1,76 +1,14 @@
-# OSX
-app/.DS_Store
+node_modules/
+.expo/
+dist/
+npm-debug.*
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+*.orig.*
+web-build/
 
-# Xcode
-app/build/
-app/*.pbxuser
-app/!default.pbxuser
-app/*.mode1v3
-app/!default.mode1v3
-app/*.mode2v3
-app/!default.mode2v3
-app/*.perspectivev3
-app/!default.perspectivev3
-app/xcuserdata
-app/*.xccheckout
-app/*.moved-aside
-app/DerivedData
-app/*.hmap
-app/*.ipa
-app/*.xcuserstate
-app/project.xcworkspace
-
-# Android/IntelliJ
-app/build/
-.idea
-app/.gradle
-app/local.properties
-app/*.iml
-
-# node.js
-node_modules
-app/npm-debug.log
-app/yarn-error.log
-
-# BUCK
-app/buck-out/
-app/\.buckd/
-app/*.keystore
-
-# fastlane
-#
-# It is recommended to not store the screenshots in the git repo. Instead, use fastlane to re-generate the
-# screenshots whenever they are needed.
-# For more information about the recommended setup visit:
-# https://docs.fastlane.tools/best-practices/source-control/
-
-app/*/fastlane/report.xml
-app/*/fastlane/Preview.html
-app/*/fastlane/screenshots
-
-# Bundle artifacts
-app/*.jsbundle
-
-# CocoaPods
-app//ios/Pods/
-
-# Expo
-app/.expo
-app/web-build/
-
-# Old init
-app/node_modules/**/*
-app/.expo/*
-app/npm-debug.*
-app/*.jks
-app/*.p8
-app/*.p12
-app/*.key
-app/*.mobileprovision
-app/*.orig.*
-app/web-build/
-
-# server
-server/.env
-server/static
-server/levels/shared
+# macOS
+.DS_Store

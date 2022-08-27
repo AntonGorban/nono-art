@@ -1,0 +1,40 @@
+{
+  "expo": {
+    "name": "nonoArt",
+    "slug": "nonoArt",
+    "version": "2.0.0",
+    "owner": "antongorban",
+    "currentFullName": "@antongorban/nonoArt",
+    "privacy": "public",
+    "platforms": ["android"],
+    "githubUrl": "https://github.com/AntonGorban/nono-art",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "dark",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#2D2D2D"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": ["**/*"],
+    "ios": {
+      "bundleIdentifier": "com.antogor.nonoArt",
+      "buildNumber": "2.0.0",
+      "supportsTablet": true
+    },
+    "android": {
+      "package": "com.antogor.nonoArt",
+      "versionCode": 2,
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#2D2D2D"
+      }
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    }
+  }
+}
