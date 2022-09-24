@@ -1,3 +1,5 @@
+import { Text, View } from 'react-native';
+
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
@@ -10,10 +12,7 @@ const Stack = createStackNavigator();
 
 export const Screens: React.FC = () => (
   <NavigationContainer>
-    <Stack.Navigator
-      initialRouteName={ScreenName.main}
-      // headerMode="float"
-    >
+    <Stack.Navigator initialRouteName={ScreenName.main}>
       {screens.map(({ name, component }) => (
         <Stack.Screen
           key={name}
@@ -21,6 +20,7 @@ export const Screens: React.FC = () => (
           name={name}
           component={component}
           options={{
+            animationEnabled: false,
             title: 'nonoArt',
             headerStyle: {
               backgroundColor: Color.dark,
@@ -45,6 +45,14 @@ export const Screens: React.FC = () => (
 
 const screens = [
   { name: ScreenName.main, component: Main },
+  {
+    name: 'Levels',
+    component: () => (
+      <View>
+        <Text>Levels</Text>
+      </View>
+    ),
+  },
   // { name: "Levels", component: Levels },
   // { name: "Game", component: Game },
   // { name: "Designer", component: Designer },

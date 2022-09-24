@@ -17,8 +17,14 @@
   "plugins": ["react", "@typescript-eslint"],
   "rules": {
     "react/react-in-jsx-scope": "off",
+    "react/display-name": "off",
+    "react/prop-types": "off",
+    "@typescript-eslint/ban-ts-comment": "warn",
+    "import/order": "off",
+    "@typescript-eslint/no-namespace": "off",
+    "@typescript-eslint/array-type": "off",
     "prettier/prettier": [
-      "warn",
+      "off",
       {
         "trailingComma": "es5"
       }
