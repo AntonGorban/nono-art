@@ -1,9 +1,7 @@
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export const getLevelsFromRepo = async () => {
-  const response = await fetch(
-    "https://raw.githubusercontent.com/AntonGorban/nono-art/levels/levels.json"
-  );
+  const response = await fetch('https://raw.githubusercontent.com/AntonGorban/nono-art/levels/levels.json');
   return await response.json();
 };
 
@@ -12,7 +10,7 @@ export const storage = {
     try {
       return await AsyncStorage.getItem(key);
     } catch (error) {
-      console.error("storage error", error);
+      console.error('storage error', error);
     }
   },
 
@@ -21,7 +19,7 @@ export const storage = {
       const jsonValue = await AsyncStorage.getItem(key);
       return jsonValue != null ? JSON.parse(jsonValue) : null;
     } catch (error) {
-      console.error("storage error", error);
+      console.error('storage error', error);
     }
   },
 
@@ -29,7 +27,7 @@ export const storage = {
     try {
       return await AsyncStorage.multiGet(keys);
     } catch (error) {
-      console.error("storage error", error);
+      console.error('storage error', error);
     }
   },
 
@@ -37,7 +35,7 @@ export const storage = {
     try {
       await AsyncStorage.setItem(key, value);
     } catch (error) {
-      console.error("storage error", error);
+      console.error('storage error', error);
     }
   },
 
@@ -46,7 +44,7 @@ export const storage = {
       const jsonValue = JSON.stringify(value);
       await AsyncStorage.setItem(key, jsonValue);
     } catch (error) {
-      console.error("storage error", error);
+      console.error('storage error', error);
     }
   },
 
@@ -54,7 +52,7 @@ export const storage = {
     try {
       await AsyncStorage.removeItem(key);
     } catch (error) {
-      console.error("storage error", error);
+      console.error('storage error', error);
     }
   },
 
@@ -62,7 +60,7 @@ export const storage = {
     try {
       return await AsyncStorage.getAllKeys();
     } catch (error) {
-      console.error("storage error", error);
+      console.error('storage error', error);
     }
   },
 
@@ -70,7 +68,7 @@ export const storage = {
     try {
       return await AsyncStorage.clear();
     } catch (error) {
-      console.error("storage error", error);
+      console.error('storage error', error);
     }
   },
 };

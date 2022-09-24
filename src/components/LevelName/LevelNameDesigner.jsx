@@ -1,29 +1,17 @@
-import React from "react";
-import {
-  View,
-  Text,
-  StyleSheet,
-  TextInput,
-  TouchableHighlight,
-} from "react-native";
-import sett from "../../settings";
+import React from 'react';
+import { View, Text, StyleSheet, TextInput, TouchableHighlight } from 'react-native';
+import sett from '../../settings';
 
 export const LevelNameDesigner = ({
-  name = "",
+  name = '',
   width = 0,
   height = 0,
-  onInput = () =>
-    console.warn("onInput func not found on LevelNameDesigner.jsx component"),
-  newRow = () =>
-    console.warn("newRow func not found on LevelNameDesigner.jsx component"),
-  removeRow = () =>
-    console.warn("removeRow func not found on LevelNameDesigner.jsx component"),
-  newCol = () =>
-    console.warn("newCol func not found on LevelNameDesigner.jsx component"),
-  removeCol = () =>
-    console.warn("removeCol func not found on LevelNameDesigner.jsx component"),
-  toShare = () =>
-    console.warn("toShare func not found on LevelNameDesigner.jsx component"),
+  onInput = () => console.warn('onInput func not found on LevelNameDesigner.jsx component'),
+  newRow = () => console.warn('newRow func not found on LevelNameDesigner.jsx component'),
+  removeRow = () => console.warn('removeRow func not found on LevelNameDesigner.jsx component'),
+  newCol = () => console.warn('newCol func not found on LevelNameDesigner.jsx component'),
+  removeCol = () => console.warn('removeCol func not found on LevelNameDesigner.jsx component'),
+  toShare = () => console.warn('toShare func not found on LevelNameDesigner.jsx component'),
 }) => (
   <View style={styles.container}>
     <View style={styles.wrapper}>
@@ -59,7 +47,7 @@ export const LevelNameDesigner = ({
         onPress={toShare}
       >
         <View>
-          <Text style={styles.shareText}>{"поделиться >"}</Text>
+          <Text style={styles.shareText}>{'поделиться >'}</Text>
         </View>
       </TouchableHighlight>
       <TextInput
@@ -103,43 +91,43 @@ export const LevelNameDesigner = ({
 const styles = StyleSheet.create({
   container: {
     height: 70,
-    width: "100%",
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
+    width: '100%',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
     padding: 5,
   },
   input: {
     color: sett.color.white,
     fontSize: 16,
     fontFamily: sett.font.montserrat.regular,
-    textAlign: "center",
+    textAlign: 'center',
     borderColor: sett.color.white,
-    borderStyle: "solid",
+    borderStyle: 'solid',
     borderBottomWidth: 1,
     height: 30,
-    width: "100%",
+    width: '100%',
     flex: 1,
   },
   wrapper: {
-    justifyContent: "space-evenly",
-    alignItems: "center",
+    justifyContent: 'space-evenly',
+    alignItems: 'center',
   },
   wrap: {
-    flexDirection: "row",
-    justifyContent: "space-evenly",
-    alignItems: "center",
+    flexDirection: 'row',
+    justifyContent: 'space-evenly',
+    alignItems: 'center',
   },
   main: {
-    justifyContent: "space-evenly",
-    alignItems: "center",
+    justifyContent: 'space-evenly',
+    alignItems: 'center',
     flex: 1,
   },
   counter: {
     color: sett.color.white,
     fontSize: 14,
     fontFamily: sett.font.montserrat.light,
-    textAlign: "center",
+    textAlign: 'center',
     paddingBottom: 5,
   },
   buttonContainer: {
@@ -154,7 +142,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     lineHeight: 25,
     fontFamily: sett.font.montserrat.bold,
-    textAlign: "center",
+    textAlign: 'center',
   },
   shareContainer: {
     backgroundColor: sett.color.white,
@@ -167,6 +155,6 @@ const styles = StyleSheet.create({
     fontSize: 15,
     lineHeight: 25,
     fontFamily: sett.font.montserrat.regular,
-    textAlign: "center",
+    textAlign: 'center',
   },
 });

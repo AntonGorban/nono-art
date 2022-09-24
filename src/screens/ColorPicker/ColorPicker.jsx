@@ -1,14 +1,14 @@
-import React from "react";
-import { StyleSheet, View, Text } from "react-native";
-import { TriangleColorPicker, toHsv, fromHsv } from "react-native-color-picker";
-import { connect } from "react-redux";
-import sett from "../../settings";
+import React from 'react';
+import { StyleSheet, View, Text } from 'react-native';
+import { TriangleColorPicker, toHsv, fromHsv } from 'react-native-color-picker';
+import { connect } from 'react-redux';
+import sett from '../../settings';
+
+import { pickColorAC } from '../../redux/designerReducer';
 
 const ColorPickerContainer = ({ defaultColor, onPickColor, navigation }) => (
   <View style={styles.container}>
-    <Text style={styles.text}>
-      Выберите цвет, который хотите использовать и нажмите на него снизу
-    </Text>
+    <Text style={styles.text}>Выберите цвет, который хотите использовать и нажмите на него снизу</Text>
     <TriangleColorPicker
       defaultColor={toHsv(defaultColor)}
       onColorSelected={(color) => {
@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
     fontFamily: sett.font.montserrat.regular,
     color: sett.color.white,
     fontSize: 16,
-    textAlign: "center",
+    textAlign: 'center',
   },
 });
 
@@ -42,13 +42,8 @@ const mapStateToProps = (state) => ({
   defaultColor: state.designer.colors[state.designer.selectedColor],
 });
 
-import { pickColorAC } from "../../redux/designerReducer";
-
 const mapDispatchToProps = (dispatch) => ({
   onPickColor: (color) => dispatch(pickColorAC(color)),
 });
 
-export const ColorPicker = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(ColorPickerContainer);
+export const ColorPicker = connect(mapStateToProps, mapDispatchToProps)(ColorPickerContainer);

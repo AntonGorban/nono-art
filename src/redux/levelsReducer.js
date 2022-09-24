@@ -1,21 +1,21 @@
-const SET_LEVELS = "SET-LEVELS";
-const PUSH_NEW_LEVELS = "PUSH-NEW-LEVELS";
-const SET_SELECTED_LEVEL = "SET-SELECTED-LEVEL";
-const SET_SELECTED_COLOR = "SET-SELECTED-COLOR";
-const SET_PROGRESS_CELL = "SET-PROGRESS-CELL";
-const REMOVE_PROGRESS_ROW = "REMOVE-PROGRESS-ROW";
-const REMOVE_PROGRESS_COL = "REMOVE-PROGRESS-COL";
-const REMOVE_PROGRESS_ALL = "REMOVE-PROGRESS-ALL";
+import { storage } from '../storage';
 
-import { storage } from "../storage";
+const SET_LEVELS = 'SET-LEVELS';
+const PUSH_NEW_LEVELS = 'PUSH-NEW-LEVELS';
+const SET_SELECTED_LEVEL = 'SET-SELECTED-LEVEL';
+const SET_SELECTED_COLOR = 'SET-SELECTED-COLOR';
+const SET_PROGRESS_CELL = 'SET-PROGRESS-CELL';
+const REMOVE_PROGRESS_ROW = 'REMOVE-PROGRESS-ROW';
+const REMOVE_PROGRESS_COL = 'REMOVE-PROGRESS-COL';
+const REMOVE_PROGRESS_ALL = 'REMOVE-PROGRESS-ALL';
 
 const initialState = {
   levels: [
     {
-      name: "Сердечко",
+      name: 'Сердечко',
       width: 10,
       height: 10,
-      colors: ["#000a12", "#ff1744", "#ffab00"],
+      colors: ['#000a12', '#ff1744', '#ffab00'],
       art: [
         [null, 0, 0, 0, null, null, 0, 0, 0, null],
         [0, 1, 1, 1, 0, 0, 1, 1, 1, 0],
@@ -49,15 +49,15 @@ const initialState = {
 const levelsReducer = (prevState = initialState, action) => {
   switch (action.type) {
     case SET_LEVELS:
-      storage.setObj("levels", action.levels);
+      storage.setObj('levels', action.levels);
       return { ...prevState, levels: action.levels };
 
     case PUSH_NEW_LEVELS:
-      storage.setObj("levels", [...prevState.levels, ...action.levels]);
+      storage.setObj('levels', [...prevState.levels, ...action.levels]);
       return { ...prevState, levels: [...prevState.levels, ...action.levels] };
 
     case SET_SELECTED_LEVEL:
-      storage.setObj("selectedLevel", action.selectedLevel);
+      storage.setObj('selectedLevel', action.selectedLevel);
       return { ...prevState, selectedLevel: action.selectedLevel };
 
     case SET_SELECTED_COLOR:
@@ -73,16 +73,12 @@ const levelsReducer = (prevState = initialState, action) => {
                 rowIdx !== action.row
                   ? row
                   : row.map((col, colIdx) =>
-                      colIdx !== action.col
-                        ? col
-                        : col !== prevState.selectedColor
-                        ? prevState.selectedColor
-                        : null
+                      colIdx !== action.col ? col : col !== prevState.selectedColor ? prevState.selectedColor : null
                     )
               ),
             }
       );
-      storage.setObj("levels", levels);
+      storage.setObj('levels', levels);
       return { ...prevState, levels };
 
     case REMOVE_PROGRESS_ROW:
@@ -123,9 +119,7 @@ const levelsReducer = (prevState = initialState, action) => {
             ? level
             : {
                 ...level,
-                progress: level.progress.map((row, rowIdx) =>
-                  row.map((col, colIdx) => null)
-                ),
+                progress: level.progress.map((row, rowIdx) => row.map((col, colIdx) => null)),
               }
         ),
       };

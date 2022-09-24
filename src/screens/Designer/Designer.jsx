@@ -1,8 +1,22 @@
-import React from "react";
-import { connect } from "react-redux";
-import { Alert } from "react-native";
+import React from 'react';
+import { connect } from 'react-redux';
+import { Alert } from 'react-native';
 
-import { DesignerPresentation } from "./DesignerPresentation";
+import { DesignerPresentation } from './DesignerPresentation';
+
+import {
+  setNameAC,
+  setCellAC,
+  setColorAC,
+  setSelectedColorAC,
+  newRowAC,
+  removeRowAC,
+  newColAC,
+  removeColAC,
+  removeArtRowAC,
+  removeArtColAC,
+  removeArtAllAC,
+} from '../../redux/designerReducer';
 
 class DesignerContainer extends React.Component {
   constructor(props) {
@@ -13,33 +27,24 @@ class DesignerContainer extends React.Component {
     console.log(props);
     this.toColorPicker = (selectedColor) => {
       props.setSelectedColor(selectedColor);
-      props.navigation.navigate("ColorPicker");
+      props.navigation.navigate('ColorPicker');
     };
-    this.toShare = () => props.navigation.navigate("Share");
-    this.setSelectedColor = (selectedColor) =>
-      props.setSelectedColor(selectedColor);
+    this.toShare = () => props.navigation.navigate('Share');
+    this.setSelectedColor = (selectedColor) => props.setSelectedColor(selectedColor);
     this.newRow = () => props.newRow();
     this.removeRow = () => props.removeRow();
     this.newCol = () => props.newCol();
     this.removeCol = () => props.removeCol();
     this.removeArtRow = (row) =>
-      this.removeArtAlert(
-        `Вы точно хотите очистить строку № ${row + 1}?`,
-        "Очистка строки",
-        () => props.removeArtRow(row)
+      this.removeArtAlert(`Вы точно хотите очистить строку № ${row + 1}?`, 'Очистка строки', () =>
+        props.removeArtRow(row)
       );
     this.removeArtCol = (col) =>
-      this.removeArtAlert(
-        "Очистка колонки",
-        `Вы точно хотите очистить колонку № ${col + 1}?`,
-        () => props.removeArtCol(col)
+      this.removeArtAlert('Очистка колонки', `Вы точно хотите очистить колонку № ${col + 1}?`, () =>
+        props.removeArtCol(col)
       );
     this.removeArtAll = () =>
-      this.removeArtAlert(
-        "Очистка поля",
-        `Вы точно хотите очистить все игровое поле?`,
-        () => props.removeArtAll()
-      );
+      this.removeArtAlert('Очистка поля', `Вы точно хотите очистить все игровое поле?`, () => props.removeArtAll());
 
     this.state = {
       cellSize: 20,
@@ -55,10 +60,10 @@ class DesignerContainer extends React.Component {
       massage,
       [
         {
-          text: "Нет, оставить",
+          text: 'Нет, оставить',
         },
         {
-          text: "Да, очистить",
+          text: 'Да, очистить',
           onPress: cbFunc,
         },
       ],
@@ -75,7 +80,7 @@ class DesignerContainer extends React.Component {
         Math.floor(width / (this.props.art[0].length + 2.5)),
         Math.floor(height / (this.props.art.length + 2.5))
       ) - 2;
-    console.log("cellSize = ", size);
+    console.log('cellSize = ', size);
     this.setState({
       cellSize: size,
       cellBorderRadius: Math.floor(size / 5),
@@ -86,21 +91,11 @@ class DesignerContainer extends React.Component {
 
   accumulateCountersValues = (horizontal) => {
     const accumulator = [];
-    for (
-      let i = 0;
-      i < (horizontal ? this.props.art.length : this.props.art[0].length);
-      i++
-    ) {
-      let counterValue = [0, 0, 0];
-      for (
-        let j = 0;
-        j < (horizontal ? this.props.art[0].length : this.props.art.length);
-        j++
-      ) {
+    for (let i = 0; i < (horizontal ? this.props.art.length : this.props.art[0].length); i++) {
+      const counterValue = [0, 0, 0];
+      for (let j = 0; j < (horizontal ? this.props.art[0].length : this.props.art.length); j++) {
         this.props.art[horizontal ? i : j][horizontal ? j : i] !== null &&
-          counterValue[
-            this.props.art[horizontal ? i : j][horizontal ? j : i]
-          ]++;
+          counterValue[this.props.art[horizontal ? i : j][horizontal ? j : i]]++;
       }
       accumulator.push(counterValue);
     }
@@ -110,10 +105,7 @@ class DesignerContainer extends React.Component {
   componentDidMount() {}
 
   componentDidUpdate(prevProps, prevState, snapshot) {
-    if (
-      prevProps.art.length !== this.props.art.length ||
-      prevProps.art[0].length !== this.props.art[0].length
-    ) {
+    if (prevProps.art.length !== this.props.art.length || prevProps.art[0].length !== this.props.art[0].length) {
       this.setCellSize();
     }
   }
@@ -159,26 +151,11 @@ const mapStateToProps = (state) => ({
   art: state.designer.art,
 });
 
-import {
-  setNameAC,
-  setCellAC,
-  setColorAC,
-  setSelectedColorAC,
-  newRowAC,
-  removeRowAC,
-  newColAC,
-  removeColAC,
-  removeArtRowAC,
-  removeArtColAC,
-  removeArtAllAC,
-} from "../../redux/designerReducer";
-
 const mapDispatchToProps = (dispatch) => ({
   setName: (name) => dispatch(setNameAC(name)),
   setCell: (row, col) => dispatch(setCellAC(row, col)),
   setColor: (idx, color) => dispatch(setColorAC(idx, color)),
-  setSelectedColor: (selectedColor) =>
-    dispatch(setSelectedColorAC(selectedColor)),
+  setSelectedColor: (selectedColor) => dispatch(setSelectedColorAC(selectedColor)),
   newRow: () => dispatch(newRowAC()),
   removeRow: () => dispatch(removeRowAC()),
   newCol: () => dispatch(newColAC()),
@@ -188,7 +165,4 @@ const mapDispatchToProps = (dispatch) => ({
   removeArtAll: () => dispatch(removeArtAllAC()),
 });
 
-export const Designer = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(DesignerContainer);
+export const Designer = connect(mapStateToProps, mapDispatchToProps)(DesignerContainer);

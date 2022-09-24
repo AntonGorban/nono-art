@@ -1,22 +1,15 @@
-import React from "react";
-import { View, StyleSheet } from "react-native";
-import sett from "../../settings";
+import React from 'react';
+import { View, StyleSheet } from 'react-native';
+import sett from '../../settings';
 
-import { ColorDesigner } from "../Color/ColorDesigner";
+import { ColorDesigner } from '../Color/ColorDesigner';
 
 export const ColorsDesigner = ({
-  colors = ["red", "red", "red"],
+  colors = ['red', 'red', 'red'],
   selectedColor = null,
-  setSelectedColor = () =>
-    console.warn(
-      "setSelectedColor func not found on ColorsDesigner.jsx component"
-    ),
-  setColor = () =>
-    console.warn("setColor func not found on ColorsDesigner.jsx component"),
-  toColorPicker = () =>
-    console.warn(
-      "toColorPicker func not found on ColorsDesigner.jsx component"
-    ),
+  setSelectedColor = () => console.warn('setSelectedColor func not found on ColorsDesigner.jsx component'),
+  setColor = () => console.warn('setColor func not found on ColorsDesigner.jsx component'),
+  toColorPicker = () => console.warn('toColorPicker func not found on ColorsDesigner.jsx component'),
 }) => (
   <View style={styles.container}>
     <ColorDesigner
@@ -47,12 +40,12 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: sett.color.white,
     height: 90,
-    width: "100%",
+    width: '100%',
     borderTopLeftRadius: 65,
     borderTopRightRadius: 65,
-    flexDirection: "row",
-    justifyContent: "space-evenly",
-    alignItems: "center",
+    flexDirection: 'row',
+    justifyContent: 'space-evenly',
+    alignItems: 'center',
     paddingHorizontal: 10,
   },
 });

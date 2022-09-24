@@ -1,6 +1,6 @@
-import React from "react";
-import { View, Text, TouchableOpacity } from "react-native";
-import sett from "../../settings";
+import React from 'react';
+import { View, Text, TouchableOpacity } from 'react-native';
+import sett from '../../settings';
 
 export const Counter = ({
   values = [0, 0, 0],
@@ -11,8 +11,7 @@ export const Counter = ({
   counterFontSize,
   counterIdx,
   horizontal = true,
-  onClick = () =>
-    console.warn("onClick func not found on Counter.jsx component"),
+  onClick = () => console.warn('onClick func not found on Counter.jsx component'),
 }) => (
   <TouchableOpacity activeOpacity={0.7} onPress={onClick}>
     <View
@@ -21,7 +20,7 @@ export const Counter = ({
         width: horizontal ? bigCellSize : cellSize,
         height: horizontal ? cellSize : bigCellSize,
         borderRadius: cellBorderRadius,
-        flexDirection: horizontal ? "row" : "column",
+        flexDirection: horizontal ? 'row' : 'column',
       }}
     >
       {values.map((value, valueIdx) => (
@@ -31,9 +30,7 @@ export const Counter = ({
             fontSize: counterFontSize,
             color: colors[valueIdx],
           }}
-          key={`counter.${
-            horizontal ? "row" : "col"
-          }.${counterIdx}.${valueIdx}`}
+          key={`counter.${horizontal ? 'row' : 'col'}.${counterIdx}.${valueIdx}`}
         >
           {value}
         </Text>
@@ -47,14 +44,14 @@ const counterStyle = {
   height: 20,
   margin: 1,
   backgroundColor: sett.color.white,
-  alignItems: "center",
-  justifyContent: "space-evenly",
+  alignItems: 'center',
+  justifyContent: 'space-evenly',
   borderRadius: 3,
-  flexDirection: "row",
+  flexDirection: 'row',
 };
 
 const textStyle = {
-  textAlign: "right",
+  textAlign: 'right',
   fontFamily: sett.font.montserrat.regular,
   fontSize: 10,
 };

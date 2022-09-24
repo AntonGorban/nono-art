@@ -50,7 +50,7 @@ export const GameGrid = ({
         counterFontSize={counterFontSize}
         bigCellSize={bigCellSize}
         cellBorderRadius={cellBorderRadius}
-        horizontal={true}
+        horizontal
         onClick={removeProgressRow}
       />
       <View>

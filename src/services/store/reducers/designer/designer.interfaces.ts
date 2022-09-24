@@ -1,6 +1,6 @@
 import { Domain } from '../../../../types/domain';
 
-export interface DesignerState extends Omit<Domain.LevelType, 'id'> {}
+export type DesignerState = Omit<Domain.LevelType, 'id'>;
 
 /* -------------------------------------------------------------------------- */
 

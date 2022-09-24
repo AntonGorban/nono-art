@@ -1,12 +1,6 @@
-import React, { useContext } from "react";
-import {
-  StyleSheet,
-  View,
-  Text,
-  ScrollView,
-  TouchableHighlight,
-} from "react-native";
-import sett from "../../settings";
+import React, { useContext } from 'react';
+import { StyleSheet, View, Text, ScrollView, TouchableHighlight } from 'react-native';
+import sett from '../../settings';
 
 export const LevelsPresentation = ({ levels, startLevel }) => (
   <View style={styles.wrap}>
@@ -38,30 +32,30 @@ const styles = StyleSheet.create({
   title: {
     marginBottom: 25,
     fontSize: 25,
-    textAlign: "center",
+    textAlign: 'center',
     color: sett.color.white,
     fontFamily: sett.font.montserrat.bold,
-    textTransform: "uppercase",
+    textTransform: 'uppercase',
   },
   container: {
     flex: 1,
   },
   buttonContainer: {
-    width: "80%",
-    marginHorizontal: "10%",
+    width: '80%',
+    marginHorizontal: '10%',
     paddingVertical: 20,
     paddingHorizontal: 5,
     borderWidth: 2,
-    borderStyle: "solid",
+    borderStyle: 'solid',
     borderColor: sett.color.white,
     borderRadius: 25,
     marginVertical: 15,
   },
   buttonText: {
     fontSize: 20,
-    textAlign: "center",
+    textAlign: 'center',
     color: sett.color.white,
     fontFamily: sett.font.montserrat.regular,
-    textTransform: "uppercase",
+    textTransform: 'uppercase',
   },
 });

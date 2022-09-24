@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import {
   StyleSheet,
   ScrollView,
@@ -9,51 +9,44 @@ import {
   TouchableNativeFeedback,
   Platform,
   Linking,
-} from "react-native";
-import sett from "../../settings";
+} from 'react-native';
+import sett from '../../settings';
 
-import antogorImg from "../../assets/img/antogor.jpg";
-import dimasImg from "../../assets/img/dimas.jpg";
-import userIcon from "../../assets/img/user.png";
-import mailIcon from "../../assets/img/mail.png";
-import coderIcon from "../../assets/img/terminal.png";
-import designerIcon from "../../assets/img/icons.png";
-import githubIcon from "../../assets/img/github.png";
+import antogorImg from '../../assets/img/antogor.jpg';
+import dimasImg from '../../assets/img/dimas.jpg';
+import userIcon from '../../assets/img/user.png';
+import mailIcon from '../../assets/img/mail.png';
+import coderIcon from '../../assets/img/terminal.png';
+import designerIcon from '../../assets/img/icons.png';
+import githubIcon from '../../assets/img/github.png';
 
 export const About = () => (
   <View style={styles.container}>
     <Text style={styles.title}>О игре:</Text>
     <ScrollView style={styles.scroll}>
       <Text style={styles.text}>
-        nonoArt - это мобильная игра, совмещающая собой японскую головоломку
-        nonogram и увлекательное рисование pixel-артов.
+        nonoArt - это мобильная игра, совмещающая собой японскую головоломку nonogram и увлекательное рисование
+        pixel-артов.
       </Text>
       <Text style={styles.text}>
-        Игра разработана для участия в IT-олимпиаде "IT-Планета 2020/21". Но
-        будет развиваться и дальше
+        Игра разработана для участия в IT-олимпиаде "IT-Планета 2020/21". Но будет развиваться и дальше
       </Text>
-      <Text style={styles.text}>
-        Игра была разработана в команде из двух человек:
-      </Text>
+      <Text style={styles.text}>Игра была разработана в команде из двух человек:</Text>
       <View style={styles.person}>
-        {Platform.OS === "android" ? (
+        {Platform.OS === 'android' ? (
           <TouchableNativeFeedback
-            background={TouchableNativeFeedback.Ripple(
-              sett.color.dark,
-              true,
-              80
-            )}
-            useForeground={true}
-            onPress={() => Linking.openURL("https://github.com/AntonGorban")}
+            background={TouchableNativeFeedback.Ripple(sett.color.dark, true, 80)}
+            useForeground
+            onPress={() => Linking.openURL('https://github.com/AntonGorban')}
           >
-            <View style={{ alignItems: "center", justifyContent: "center" }}>
+            <View style={{ alignItems: 'center', justifyContent: 'center' }}>
               <Image style={styles.img} source={antogorImg} />
             </View>
           </TouchableNativeFeedback>
         ) : (
           <TouchableOpacity
-            style={{ alignItems: "center", justifyContent: "center" }}
-            onPress={() => Linking.openURL("https://github.com/AntonGorban")}
+            style={{ alignItems: 'center', justifyContent: 'center' }}
+            onPress={() => Linking.openURL('https://github.com/AntonGorban')}
             activeOpacity={0.7}
           >
             <Image style={styles.img} source={antogorImg} />
@@ -63,10 +56,7 @@ export const About = () => (
           <Image style={styles.fieldImg} source={userIcon} />
           <Text style={styles.fieldText}>Антон Горбань</Text>
         </View>
-        <TouchableOpacity
-          onPress={() => Linking.openURL("mailto:antogor.work@gmail.com")}
-          activeOpacity={0.7}
-        >
+        <TouchableOpacity onPress={() => Linking.openURL('mailto:antogor.work@gmail.com')} activeOpacity={0.7}>
           <View style={styles.field}>
             <Image style={styles.fieldImg} source={mailIcon} />
             <Text style={styles.fieldText}>antogor.work@gmail.com</Text>
@@ -78,24 +68,20 @@ export const About = () => (
         </View>
       </View>
       <View style={styles.person}>
-        {Platform.OS === "android" ? (
+        {Platform.OS === 'android' ? (
           <TouchableNativeFeedback
-            background={TouchableNativeFeedback.Ripple(
-              sett.color.dark,
-              true,
-              80
-            )}
-            useForeground={true}
-            onPress={() => Linking.openURL("https://vk.com/donetskuy")}
+            background={TouchableNativeFeedback.Ripple(sett.color.dark, true, 80)}
+            useForeground
+            onPress={() => Linking.openURL('https://vk.com/donetskuy')}
           >
-            <View style={{ alignItems: "center", justifyContent: "center" }}>
+            <View style={{ alignItems: 'center', justifyContent: 'center' }}>
               <Image style={styles.img} source={dimasImg} />
             </View>
           </TouchableNativeFeedback>
         ) : (
           <TouchableOpacity
-            style={{ alignItems: "center", justifyContent: "center" }}
-            onPress={() => Linking.openURL("https://vk.com/donetskuy")}
+            style={{ alignItems: 'center', justifyContent: 'center' }}
+            onPress={() => Linking.openURL('https://vk.com/donetskuy')}
             activeOpacity={0.7}
           >
             <Image style={styles.img} source={dimasImg} />
@@ -105,10 +91,7 @@ export const About = () => (
           <Image style={styles.fieldImg} source={userIcon} />
           <Text style={styles.fieldText}>Дмитрий Прачёв</Text>
         </View>
-        <TouchableOpacity
-          onPress={() => Linking.openURL("mailto:0669600185d@gmail.com")}
-          activeOpacity={0.7}
-        >
+        <TouchableOpacity onPress={() => Linking.openURL('mailto:0669600185d@gmail.com')} activeOpacity={0.7}>
           <View style={styles.field}>
             <Image style={styles.fieldImg} source={mailIcon} />
             <Text style={styles.fieldText}>0669600185d@gmail.com</Text>
@@ -122,16 +105,12 @@ export const About = () => (
       <View style={styles.repo}>
         <Text style={styles.text}>Репозиторий игры:</Text>
         <TouchableOpacity
-          onPress={() =>
-            Linking.openURL("https://github.com/AntonGorban/nono-art")
-          }
+          onPress={() => Linking.openURL('https://github.com/AntonGorban/nono-art')}
           activeOpacity={0.7}
         >
           <View style={styles.field}>
             <Image style={styles.fieldImg} source={githubIcon} />
-            <Text style={styles.fieldText}>
-              github.com/AntonGorban/nono-art
-            </Text>
+            <Text style={styles.fieldText}>github.com/AntonGorban/nono-art</Text>
           </View>
         </TouchableOpacity>
       </View>
@@ -148,15 +127,15 @@ const styles = StyleSheet.create({
   title: {
     marginBottom: 25,
     fontSize: 25,
-    textAlign: "center",
+    textAlign: 'center',
     color: sett.color.white,
     fontFamily: sett.font.montserrat.bold,
-    textTransform: "uppercase",
+    textTransform: 'uppercase',
   },
   scroll: { flex: 1, paddingHorizontal: 15 },
   text: {
     color: sett.color.white,
-    textAlign: "center",
+    textAlign: 'center',
     fontFamily: sett.font.montserrat.regular,
     fontSize: 15,
     marginVertical: 7,
@@ -164,7 +143,7 @@ const styles = StyleSheet.create({
   img: {
     width: 150,
     height: 150,
-    paddingHorizontal: "auto",
+    paddingHorizontal: 'auto',
     marginVertical: 15,
     borderRadius: 150 / 2,
   },
@@ -172,15 +151,15 @@ const styles = StyleSheet.create({
     paddingVertical: 15,
     marginHorizontal: 15,
     borderColor: sett.color.white,
-    borderStyle: "solid",
+    borderStyle: 'solid',
     borderBottomWidth: 3,
   },
   field: {
     flex: 1,
-    flexDirection: "row",
-    flexWrap: "wrap",
-    alignItems: "center",
-    justifyContent: "center",
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   fieldImg: {
     width: 20,
@@ -192,7 +171,7 @@ const styles = StyleSheet.create({
     fontFamily: sett.font.montserrat.regular,
     fontSize: 16,
     padding: 6,
-    textAlign: "center",
+    textAlign: 'center',
   },
   repo: {
     marginVertical: 30,

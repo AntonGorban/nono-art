@@ -1,32 +1,33 @@
-import React from "react";
-import { connect } from "react-redux";
-import { Alert } from "react-native";
+import React from 'react';
+import { connect } from 'react-redux';
+import { Alert } from 'react-native';
 
-import { GamePresentation } from "./GamePresentation";
+import { GamePresentation } from './GamePresentation';
+
+import {
+  setProgressCellAC,
+  setSelectedColorAC,
+  removeProgressRowAC,
+  removeProgressColAC,
+  removeProgressAllAC,
+} from '../../redux/levelsReducer';
 
 class GameContainer extends React.Component {
   constructor(props) {
     super(props);
-    this.setProgressCell = (row, col) =>
-      props.setProgressCell(props.selectedLevel, row, col);
+    this.setProgressCell = (row, col) => props.setProgressCell(props.selectedLevel, row, col);
     this.setSelectedColor = props.setSelectedColor;
     this.removeProgressRow = (row) =>
-      this.removeProgressAlert(
-        `Вы точно хотите очистить строку № ${row + 1}?`,
-        "Очистка строки",
-        () => props.removeProgressRow(props.selectedLevel, row)
+      this.removeProgressAlert(`Вы точно хотите очистить строку № ${row + 1}?`, 'Очистка строки', () =>
+        props.removeProgressRow(props.selectedLevel, row)
       );
     this.removeProgressCol = (col) =>
-      this.removeProgressAlert(
-        "Очистка колонки",
-        `Вы точно хотите очистить колонку № ${col + 1}?`,
-        () => props.removeProgressCol(props.selectedLevel, col)
+      this.removeProgressAlert('Очистка колонки', `Вы точно хотите очистить колонку № ${col + 1}?`, () =>
+        props.removeProgressCol(props.selectedLevel, col)
       );
     this.removeProgressAll = () =>
-      this.removeProgressAlert(
-        "Очистка поля",
-        `Вы точно хотите очистить все игровое поле?`,
-        () => props.removeProgressAll(props.selectedLevel)
+      this.removeProgressAlert('Очистка поля', `Вы точно хотите очистить все игровое поле?`, () =>
+        props.removeProgressAll(props.selectedLevel)
       );
 
     this.state = {
@@ -43,10 +44,10 @@ class GameContainer extends React.Component {
       massage,
       [
         {
-          text: "Нет, оставить",
+          text: 'Нет, оставить',
         },
         {
-          text: "Да, очистить",
+          text: 'Да, очистить',
           onPress: cbFunc,
         },
       ],
@@ -54,31 +55,23 @@ class GameContainer extends React.Component {
     );
 
   winAlert = () =>
-    Alert.alert(
-      "Вы выиграли",
-      `Поздравляем, вы прошли уровень ${this.props.level.name}`,
-      [
-        {
-          text: "Посмотреть еще на эту красоту",
-        },
-        {
-          text: "Выйти из уровня",
-          onPress: () => this.props.navigation.goBack(),
-        },
-      ]
-    );
+    Alert.alert('Вы выиграли', `Поздравляем, вы прошли уровень ${this.props.level.name}`, [
+      {
+        text: 'Посмотреть еще на эту красоту',
+      },
+      {
+        text: 'Выйти из уровня',
+        onPress: () => this.props.navigation.goBack(),
+      },
+    ]);
 
   setCellSize = (event) => {
     const size =
       Math.min(
-        Math.floor(
-          event.nativeEvent.layout.width / (this.props.level.width + 2.5)
-        ),
-        Math.floor(
-          event.nativeEvent.layout.height / (this.props.level.height + 2.5)
-        )
+        Math.floor(event.nativeEvent.layout.width / (this.props.level.width + 2.5)),
+        Math.floor(event.nativeEvent.layout.height / (this.props.level.height + 2.5))
       ) - 2;
-    console.log("cellSize = ", size);
+    console.log('cellSize = ', size);
     this.setState({
       cellSize: size,
       cellBorderRadius: Math.floor(size / 5),
@@ -89,32 +82,13 @@ class GameContainer extends React.Component {
 
   accumulateCountersValues = (horizontal) => {
     const accumulator = [];
-    for (
-      let i = 0;
-      i <
-      (horizontal
-        ? this.props.level.art.length
-        : this.props.level.art[0].length);
-      i++
-    ) {
-      let counterValue = [0, 0, 0];
-      for (
-        let j = 0;
-        j <
-        (horizontal
-          ? this.props.level.art[0].length
-          : this.props.level.art.length);
-        j++
-      ) {
+    for (let i = 0; i < (horizontal ? this.props.level.art.length : this.props.level.art[0].length); i++) {
+      const counterValue = [0, 0, 0];
+      for (let j = 0; j < (horizontal ? this.props.level.art[0].length : this.props.level.art.length); j++) {
         this.props.level.art[horizontal ? i : j][horizontal ? j : i] !== null &&
-          counterValue[
-            this.props.level.art[horizontal ? i : j][horizontal ? j : i]
-          ]++;
-        this.props.level.progress[horizontal ? i : j][horizontal ? j : i] !==
-          null &&
-          counterValue[
-            this.props.level.progress[horizontal ? i : j][horizontal ? j : i]
-          ]--;
+          counterValue[this.props.level.art[horizontal ? i : j][horizontal ? j : i]]++;
+        this.props.level.progress[horizontal ? i : j][horizontal ? j : i] !== null &&
+          counterValue[this.props.level.progress[horizontal ? i : j][horizontal ? j : i]]--;
       }
       accumulator.push(counterValue);
     }
@@ -127,14 +101,14 @@ class GameContainer extends React.Component {
     if (
       [
         this.accumulateCountersValues(true)
-          .map((counter) => counter.join(""))
-          .join(""),
+          .map((counter) => counter.join(''))
+          .join(''),
         this.accumulateCountersValues(false)
-          .map((counter) => counter.join(""))
-          .join(""),
+          .map((counter) => counter.join(''))
+          .join(''),
       ]
-        .join("")
-        .replace(/[0]/gim, "").length === 0
+        .join('')
+        .replace(/[0]/gim, '').length === 0
     ) {
       this.winAlert();
     }
@@ -169,18 +143,9 @@ const mapStateToProps = (state) => ({
   selectedColor: state.levels.selectedColor,
 });
 
-import {
-  setProgressCellAC,
-  setSelectedColorAC,
-  removeProgressRowAC,
-  removeProgressColAC,
-  removeProgressAllAC,
-} from "../../redux/levelsReducer";
-
 const mapDispatchToProps = (dispatch) => ({
   setProgressCell: (id, row, col) => dispatch(setProgressCellAC(id, row, col)),
-  setSelectedColor: (selectedColor) =>
-    dispatch(setSelectedColorAC(selectedColor)),
+  setSelectedColor: (selectedColor) => dispatch(setSelectedColorAC(selectedColor)),
   removeProgressRow: (id, row) => dispatch(removeProgressRowAC(id, row)),
   removeProgressCol: (id, col) => dispatch(removeProgressColAC(id, col)),
   removeProgressAll: (id) => dispatch(removeProgressAllAC(id)),

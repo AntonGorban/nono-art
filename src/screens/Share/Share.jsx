@@ -1,23 +1,20 @@
-import React from "react";
-import { SharePresentation } from "./SharePresentation";
-import { connect } from "react-redux";
-import axios from "axios";
+import React from 'react';
+import { SharePresentation } from './SharePresentation';
+import { connect } from 'react-redux';
+import axios from 'axios';
 
 class ShareContainer extends React.Component {
   state = {
-    message: "",
+    message: '',
   };
 
   sendData = async () => {
     try {
-      const res = await axios.post(
-        "https://nono-art-server.herokuapp.com/api/level/sharing",
-        {
-          name: this.props.name,
-          colors: this.props.colors,
-          art: this.props.art,
-        }
-      );
+      const res = await axios.post('https://nono-art-server.herokuapp.com/api/level/sharing', {
+        name: this.props.name,
+        colors: this.props.colors,
+        art: this.props.art,
+      });
       this.setState({
         message: res.data.message,
       });
@@ -51,7 +48,4 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({});
 
-export const Share = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(ShareContainer);
+export const Share = connect(mapStateToProps, mapDispatchToProps)(ShareContainer);
