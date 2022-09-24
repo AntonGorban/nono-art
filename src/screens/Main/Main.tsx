@@ -1,15 +1,31 @@
-import React from 'react';
+import React, { useCallback } from 'react';
+import { View } from 'react-native';
 
-import { LinksType } from '../../types/types';
-import { MainPresentation } from './Main.presentation';
+import { MainScreenProps } from '../../types/types';
+import { ScreenName } from '../../utils/ScreenName';
+import { LinkButton } from './Components/LinkButton';
+import { styles } from './Main.styles';
 
-export const Main = () => {
-  return <MainPresentation links={links} />;
+export const Main: React.FC<Props> = ({ navigation }) => {
+  const navigateToLevelsScreen = useCallback(() => navigation.navigate(ScreenName.levels), [navigation]);
+
+  const navigateToAny = useCallback(() => navigation.navigate(ScreenName.game), [navigation]);
+
+  return (
+    <View style={styles.container}>
+      <LinkButton name="Уровни" onPress={navigateToLevelsScreen} />
+
+      <LinkButton name="Продолжить" onPress={navigateToAny} />
+
+      <LinkButton name="Рисовать" onPress={navigateToAny} />
+
+      <LinkButton name="О игре" onPress={navigateToAny} />
+    </View>
+  );
 };
 
-const links: LinksType = [
-  { name: 'Уровни', to: '/Levels' },
-  { name: 'Продолжить', to: '/Game' },
-  { name: 'Рисовать', to: '/Designer' },
-  { name: 'О игре', to: '/About' },
-];
+/* ---------------------------------- Types --------------------------------- */
+
+interface Props {
+  readonly navigation: MainScreenProps['navigation'];
+}

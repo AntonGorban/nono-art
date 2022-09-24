@@ -5,6 +5,8 @@ export namespace Domain {
 
   export type ColorsType = readonly [string, string, string];
 
+  export type LevelsType = ReadonlyArray<LevelType>;
+
   export type LevelType = {
     readonly id: string;
     readonly name: string;

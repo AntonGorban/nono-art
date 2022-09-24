@@ -1,22 +1,20 @@
-import React, { useCallback } from 'react';
+import React from 'react';
+import { Text, TouchableHighlight, View } from 'react-native';
 
-import { useLinkTo } from '@react-navigation/native';
+import { Color } from '../../../utils/Color';
+import { styles } from '../Main.styles';
 
-import { PropsType } from '../../../types/utils';
-import { LinkButtonPresentation } from './LinkButton.presentation';
-
-export const LinkButton = React.memo<LinkButtonProps>(({ to, ...props }) => {
-  const navigate = useLinkTo();
-
-  const navigatePressHandler = useCallback(() => navigate(to), [navigate, to]);
-
-  return <LinkButtonPresentation {...props} onPress={navigatePressHandler} />;
-});
+export const LinkButton = React.memo<Props>(({ name, onPress }) => (
+  <TouchableHighlight activeOpacity={1} underlayColor={Color.dark} style={styles.buttonContainer} onPress={onPress}>
+    <View>
+      <Text style={styles.buttonText}>{name}</Text>
+    </View>
+  </TouchableHighlight>
+));
 
 /* ---------------------------------- Types --------------------------------- */
 
-type LinkButtonPresentationProps = PropsType<typeof LinkButtonPresentation>[0];
-
-interface LinkButtonProps extends Omit<LinkButtonPresentationProps, 'onPress'> {
-  readonly to: string;
+interface Props {
+  readonly name: string;
+  readonly onPress: () => void;
 }

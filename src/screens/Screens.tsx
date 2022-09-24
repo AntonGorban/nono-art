@@ -1,14 +1,13 @@
-import { Text, View } from 'react-native';
-
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
+import { RootStackParamList } from '../types/types';
 import { Color } from '../utils/Color';
 import { FontFamily } from '../utils/FontFamily';
 import { ScreenName } from '../utils/ScreenName';
-import { Main } from './Main/Main';
+import { MainScreen } from './Main/Main.screen';
 
-const Stack = createStackNavigator();
+const Stack = createStackNavigator<RootStackParamList>();
 
 export const Screens: React.FC = () => (
   <NavigationContainer>
@@ -44,17 +43,9 @@ export const Screens: React.FC = () => (
 );
 
 const screens = [
-  { name: ScreenName.main, component: Main },
-  {
-    name: 'Levels',
-    component: () => (
-      <View>
-        <Text>Levels</Text>
-      </View>
-    ),
-  },
-  // { name: "Levels", component: Levels },
-  // { name: "Game", component: Game },
+  { name: ScreenName.main, component: MainScreen },
+  // { name: ScreenName.levels, component: Levels },
+  // { name: ScreenName.game, component: GameScreen },
   // { name: "Designer", component: Designer },
   // { name: "About", component: About },
   // { name: "ColorPicker", component: ColorPicker },
