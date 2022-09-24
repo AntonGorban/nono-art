@@ -5,6 +5,8 @@ import { RootStackParamList } from '../types/types';
 import { Color } from '../utils/Color';
 import { FontFamily } from '../utils/FontFamily';
 import { ScreenName } from '../utils/ScreenName';
+import { GameScreen } from './Game/Game.screen';
+import { LevelsScreen } from './Levels/Levels.screen';
 import { MainScreen } from './Main/Main.screen';
 
 const Stack = createStackNavigator<RootStackParamList>();
@@ -44,8 +46,8 @@ export const Screens: React.FC = () => (
 
 const screens = [
   { name: ScreenName.main, component: MainScreen },
-  // { name: ScreenName.levels, component: Levels },
-  // { name: ScreenName.game, component: GameScreen },
+  { name: ScreenName.levels, component: LevelsScreen },
+  { name: ScreenName.game, component: GameScreen },
   // { name: "Designer", component: Designer },
   // { name: "About", component: About },
   // { name: "ColorPicker", component: ColorPicker },

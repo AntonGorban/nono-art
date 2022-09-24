@@ -23,6 +23,7 @@
     "import/order": "off",
     "@typescript-eslint/no-namespace": "off",
     "@typescript-eslint/array-type": "off",
+    "@typescript-eslint/no-empty-interface": "warn",
     "prettier/prettier": [
       "off",
       {
